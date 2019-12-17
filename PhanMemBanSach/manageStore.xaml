@@ -32,7 +32,7 @@
                 <TabItem Header="SÁCH" FontSize="20" Width="200">
                     <DockPanel>
                         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-                            <Button Content="Nhập hàng" Width="160" Height="50" Margin="10" Background="Aqua"/>
+                            <Button Content="Nhập hàng" Name="addBooks" Click="AddBooks_Click" Width="160" Height="50" Margin="10" Background="Aqua"/>
                             <Button Content="Sửa" Width="160" Height="50" Margin="10" Background="LightGreen"/>
                             <Button Content="Xóa" Width="160" Height="50" Margin="10" Background="Red"/>
                             <DockPanel Margin="200,0,0,0">

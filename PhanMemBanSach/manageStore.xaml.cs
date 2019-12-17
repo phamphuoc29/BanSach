@@ -85,5 +85,11 @@ namespace PhanMemBanSach
             public string Act { get; set; }
             public string Detail { get; set; }
         }
+
+        private void AddBooks_Click(object sender, RoutedEventArgs e)
+        {
+            var screen = new AddBooks();
+            screen.ShowDialog();
+        }
     }
 }
