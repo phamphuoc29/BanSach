@@ -5,8 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PhanMemBanSach"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Cửa hàng bán sách" Height="516" Width="800">
+    <Canvas>
+        <Image Source="Img/user.png" Width="200" Height="200" Canvas.Left="275" Canvas.Top="31"/>
+        <Label Content="Tên đăng nhập:" Canvas.Left="200" Canvas.Top="252"/>
+        <TextBox Width="178" Height="25" Canvas.Left="297" Canvas.Top="253"/>
+        <Label Content="Mật khẩu:" Canvas.Left="200" Canvas.Top="300"/>
+        <PasswordBox Width="178" Height="25" Canvas.Left="297" Canvas.Top="300"/>
+        <Button Content="Log in" Width="80" Height="25" FontWeight="Bold" Background="LightBlue" Canvas.Left="297" Canvas.Top="348" Click="LoginButton_Click"/>
+        <TextBlock Name="failLogin" Width="260" Height="26" Foreground="Red" Canvas.Left="225" Canvas.Top="396"/>
+    </Canvas>
 </Window>

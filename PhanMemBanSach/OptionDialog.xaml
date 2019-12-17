@@ -1,0 +1,16 @@
+﻿<Window x:Class="PhanMemBanSach.OptionDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PhanMemBanSach"
+        mc:Ignorable="d"
+        Title="OptionDialog" Height="450" Width="800">
+    <Canvas>
+        <Button Name="Staff" Content="Nhân viên đứng quầy" Width="322" Height="112" FontSize="30" Background="Aqua" Click="Staff_Click" Canvas.Left="40" Canvas.Top="158"/>
+        <Button Name="Manager" Content="Quản lí khách hàng" Width="322" Height="112" FontSize="30" Background="Bisque" Click="Manager_Click"  Canvas.Left="423" Canvas.Top="158"/>
+        <Button Width="60" Height="60" Canvas.Left="722" Canvas.Top="10">
+            <Image Source="Img/usericon.png"/>
+        </Button>
+    </Canvas>
+</Window>

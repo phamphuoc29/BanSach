@@ -1,0 +1,103 @@
+﻿<Window x:Class="PhanMemBanSach.paymentStaff"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PhanMemBanSach"
+        mc:Ignorable="d"
+        Title="paymentStaff" Height="750" Width="1380" WindowState="Maximized">
+    <Canvas>
+        <Button Width="60" Height="60" Canvas.Left="1300" Canvas.Top="10">
+            <Image Source="Img/usericon.png" Width="60"/>
+        </Button>
+        <Button Width="60" Height="60" Canvas.Left="10" Canvas.Top="10">
+            <Image Source="Img/back.png"/>
+        </Button>
+        <TextBlock Text="NHÂN VIÊN ĐỨNG QUẦY" Foreground="Red" FontWeight="Bold" FontSize="30" Canvas.Left="450" Canvas.Top="10"/>
+        <TextBlock Text="Ngày: 01/01/2017" Background="LightGray" Canvas.Left="570" Canvas.Top="55" Height="15" Width="99"/>
+        <StackPanel Width="1284" Height="542" Canvas.Left="28" Canvas.Top="92" Orientation="Horizontal">
+            <StackPanel Width="484" Margin="0,0,0,-134">
+                <Label Content="Nhập mã sách" FontWeight="Bold" FontSize="20"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Name="maSachTextBox" Width="316" Height="35"/>
+                    <Button Content="Thêm" Background="Aqua" FontSize="15" Width="124" Height="35" Margin="10"/>
+                </StackPanel>
+                <Label Content="Áp dụng khuyến mãi khách hàng" FontWeight="Bold" FontSize="20"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Name="KMaiTextBox" Width="316" Height="35"/>
+                    <Button Content="Áp dụng" Background="Aqua" FontSize="15" Width="124" Height="35" Margin="10"/>
+                </StackPanel>
+                <ListBox Height="168" Margin="0,5,32,0">
+                    <ListBoxItem>
+                        <StackPanel Orientation="Horizontal" Margin="3">
+                            <TextBlock Text="Tên: " FontSize="15"/>
+                            <TextBlock Text="Trần Văn A" FontSize="15"/>
+                        </StackPanel>
+                    </ListBoxItem>
+                    <ListBoxItem>
+                        <StackPanel Orientation="Horizontal" Margin="3">
+                            <TextBlock Text="SĐT: " FontSize="15"/>
+                            <TextBlock Text="0123456789" FontSize="15"/>
+                        </StackPanel>
+                    </ListBoxItem>
+                    <ListBoxItem>
+                        <StackPanel Orientation="Horizontal" Margin="3">
+                            <TextBlock Text="Ngày sinh: " FontSize="15"/>
+                            <TextBlock Text="01/01/1980" FontSize="15"/>
+                        </StackPanel>
+                    </ListBoxItem>
+                    <ListBoxItem>
+                        <StackPanel Orientation="Horizontal" Margin="3">
+                            <TextBlock Text="Tổng tiền giao dịch: " FontSize="15"/>
+                            <TextBlock Text="123,000 đ" FontSize="15"/>
+                        </StackPanel>
+                    </ListBoxItem>
+                </ListBox>
+                <ListBox Height="160" Margin="0,5,32,0" Background="Azure">
+                    <ListBoxItem>
+                        <Label Content="Giảm giá" FontSize="20" FontWeight="Bold" Margin="115,0,0,0"/>
+                    </ListBoxItem>
+                    <ListBoxItem>
+                        <TextBlock Text="- Giảm giá cho khách hàng thân thiết (5%)" FontSize="15"  Margin="3"/>
+                    </ListBoxItem>
+                    <ListBoxItem>
+                        <TextBlock Text="- Giảm giá cho sinh nhật khách hàng (5%)" FontSize="15" Margin="3"/>
+                    </ListBoxItem>
+                </ListBox>
+            </StackPanel>
+            <StackPanel Margin="40,0,0,0" Width="782">
+                <DockPanel Height="400" LastChildFill="True">
+                    <ListView Name="lvBooks" DockPanel.Dock="Right" Width="728">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Sách" Width="480" DisplayMemberBinding="{Binding InfoBook}"/>
+                                <GridViewColumn Header="SL" Width="30" DisplayMemberBinding="{Binding Amount}" />
+                                <GridViewColumn Header="Giá tiền" Width="130" DisplayMemberBinding="{Binding Price}" />
+                                <GridViewColumn Header="Xóa" Width="70" DisplayMemberBinding="{Binding Del}" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </DockPanel>
+                <StackPanel Margin="30,0,30,0">
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <TextBlock Text="Tổng cộng: " FontSize="15"/>
+                        <TextBlock Text="360,000" FontSize="15"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <TextBlock Text="Thuế VAT: " FontSize="15"/>
+                        <TextBlock Text="+20,000" FontSize="15"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <TextBlock Text="Giảm giá: " FontSize="15"/>
+                        <TextBlock Text="-30,000" FontSize="15"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <TextBlock Text="Giảm giá: " FontSize="20" FontWeight="Bold"/>
+                        <TextBlock Text="-30,000" FontSize="20" FontWeight="Bold"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+        <Button Content="Thanh Toán" FontWeight="Bold" FontSize="40" Width="1284" Height="68" Background="BlueViolet" Canvas.Left="28" Canvas.Top="639"/>
+    </Canvas>
+</Window>

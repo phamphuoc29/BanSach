@@ -10,32 +10,30 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace PhanMemBanSach
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for OptionDialog.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class OptionDialog : Window
     {
-        public MainWindow()
+        public OptionDialog()
         {
             InitializeComponent();
         }
 
-        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        private void Staff_Click(object sender, RoutedEventArgs e)
         {
-            if (true)
-            {
-                var screen = new OptionDialog();
-                screen.ShowDialog();
-            }
-            else
-            {
-                //failLogin.Text = "Tên đăng nhập không tồn tại hoặc mật khẩu sai.";
-            }
+            var screen = new paymentStaff();
+            screen.ShowDialog();
+        }
+
+        private void Manager_Click(object sender, RoutedEventArgs e)
+        {
+            var screen = new manageStore();
+            screen.ShowDialog();
         }
     }
 }
