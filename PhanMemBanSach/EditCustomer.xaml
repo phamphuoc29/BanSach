@@ -1,0 +1,22 @@
+﻿<Window x:Class="PhanMemBanSach.EditCustomer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PhanMemBanSach"
+        mc:Ignorable="d"
+        Title="EditCustomer" Height="291.176" Width="686.176">
+    <Canvas Margin="0,0,2,2">
+        <Label Content="Thông tin khách hàng" FontSize="30" FontWeight="Bold"/>
+        <Button Content="Hủy" FontWeight="Bold" FontSize="20" Width="100" Height="35" Background="LightPink" Canvas.Left="430" Canvas.Top="10"/>
+        <Button Content="Sửa" FontWeight="Bold" FontSize="20" Width="100" Height="35" Background="LightGreen" Canvas.Left="555" Canvas.Top="10"/>
+        <Label Content="SĐT" FontSize="20" Canvas.Left="10" Canvas.Top="74"/>
+        <Label Content="Họ tên" FontSize="20" Canvas.Left="10" Canvas.Top="116"/>
+        <Label Content="Ngày sinh" FontSize="20" Canvas.Left="10" Canvas.Top="158"/>
+        <Label Content="Email" FontSize="20" Canvas.Left="10" Canvas.Top="200"/>
+        <TextBox Name="SĐT" Width="365" Height="30" Canvas.Left="165" Canvas.Top="81"/>
+        <TextBox Name="CusName" Width="365" Height="30" Canvas.Left="165" Canvas.Top="123"/>
+        <TextBox Name="Birth" Width="365" Height="30" Canvas.Left="165" Canvas.Top="165"/>
+        <TextBox Name="Email" Width="365" Height="30" Canvas.Left="165" Canvas.Top="207"/>
+    </Canvas>
+</Window>

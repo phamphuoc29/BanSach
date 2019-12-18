@@ -91,5 +91,47 @@ namespace PhanMemBanSach
             var screen = new AddBooks();
             screen.ShowDialog();
         }
+
+        private void EditBookButton_Click(object sender, RoutedEventArgs e)
+        {
+            var screen = new EditBooks();
+            screen.ShowDialog();
+        }
+
+        private void DelBookButton_Click(object sender, RoutedEventArgs e)
+        {
+            var screen = new DeleteBooks();
+            screen.ShowDialog();
+        }
+
+        private void LvInfoBooks_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var screen = new DetailBooks();
+            screen.ShowDialog();
+        }
+
+        private void AddCusButton_Click(object sender, RoutedEventArgs e)
+        {
+            var screen = new AddCustomer();
+            screen.ShowDialog();
+        }
+
+        private void EditCusButton_Click(object sender, RoutedEventArgs e)
+        {
+            var screen = new EditCustomer();
+            screen.ShowDialog();
+        }
+
+        private void DelCusButton_Click(object sender, RoutedEventArgs e)
+        {
+            var screen = new DeleteCustomer();
+            screen.ShowDialog();
+        }
+
+        private void LvCustomer_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var screen = new DetailCustomer();
+            screen.ShowDialog();
+        }
     }
 }

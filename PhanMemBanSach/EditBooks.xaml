@@ -1,0 +1,26 @@
+﻿<Window x:Class="PhanMemBanSach.EditBooks"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PhanMemBanSach"
+        mc:Ignorable="d"
+        Title="EditBooks" Height="361.067" Width="680.83">
+    <Canvas Margin="0,0,2,2">
+        <Label Content="Thông tin sách" FontSize="30" FontWeight="Bold"/>
+        <Button Content="Hủy" FontWeight="Bold" FontSize="20" Width="100" Height="35" Background="LightPink" Canvas.Left="430" Canvas.Top="10"/>
+        <Button Content="Sửa" FontWeight="Bold" FontSize="20" Width="100" Height="35" Background="LightGreen" Canvas.Left="555" Canvas.Top="10"/>
+        <Label Content="Mã hàng" FontSize="20" Canvas.Left="10" Canvas.Top="74"/>
+        <Label Content="Tựa sách" FontSize="20" Canvas.Left="10" Canvas.Top="116"/>
+        <Label Content="Giá tiền" FontSize="20" Canvas.Left="10" Canvas.Top="158"/>
+        <Label Content="Số lượng" FontSize="20" Canvas.Left="10" Canvas.Top="200"/>
+        <Label Content="Tác giả" FontSize="20" Canvas.Left="10" Canvas.Top="242"/>
+        <Label Content="Nhà xuất bản" FontSize="20" Canvas.Left="10" Canvas.Top="279"/>
+        <TextBox Name="BookID" Width="365" Height="30" Canvas.Left="165" Canvas.Top="81"/>
+        <TextBox Name="BookName" Width="365" Height="30" Canvas.Left="165" Canvas.Top="123"/>
+        <TextBox Name="Price" Width="365" Height="30" Canvas.Left="165" Canvas.Top="165"/>
+        <TextBox Name="Amount" Width="365" Height="30" Canvas.Left="165" Canvas.Top="207"/>
+        <TextBox Name="Author" Width="365" Height="30" Canvas.Left="165" Canvas.Top="249"/>
+        <TextBox Name="NXB" Width="365" Height="30" Canvas.Left="165" Canvas.Top="286"/>
+    </Canvas>
+</Window>
