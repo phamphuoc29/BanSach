@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,23 +21,163 @@ namespace PhanMemBanSach
     /// </summary>
     public partial class paymentStaff : Window
     {
+
+        /// <summary>
+        /// chứa các sách có trong cơ sở dử liệu
+        /// </summary>
+        List<Sach> booksInDatabase = new List<Sach>();
+        class DonHang
+        {
+            public string MaSach { get; set; }
+            public string TenSach { get; set; }
+            public int SoLuong { get; set; }
+            public double GiaTien { get; set; } 
+        }
+
+
+        BindingList<DonHang> booksInCart = new BindingList<DonHang>();
+
+        /// <summary>
+        /// Class dùng để xử lý các nghiệp vụ thu ngân
+        /// </summary>
+        class ThuNganBUS
+        {
+
+            /// <summary>
+            /// hàm kiểm tra mã sách vừa nhập có trong cơ sở dử liệu hay không
+            /// </summary>
+            /// <param name="bookID"></param>
+            /// <returns></returns>
+            public static bool isVaLidBook(List<Sach> books, string bookID)
+            {
+                var numberOfBooks = books.Count;
+                foreach(var book in books)
+                {
+                    if(book.MaSach == bookID)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+
+            public static void addBookToCart(ref BindingList<DonHang> cart,List<Sach> books, string bookID)
+            {
+                foreach (var book in books)
+                {
+                    if (book.MaSach == bookID)
+                    {
+                        DonHang item = new DonHang();
+                        item.MaSach = book.MaSach;
+                        item.TenSach = book.TenSach;
+                        item.SoLuong = 1;
+                        item.GiaTien = book.GiaTienBan;
+                        cart.Add(item);
+                    }
+                }
+            }
+
+            public static void updateCart(ref BindingList<DonHang> cart, int qty, string bookID)
+            {
+                for(int i=0; i< cart.Count; i++)
+                {
+                    if(cart[i].MaSach == bookID)
+                    {
+                        cart[i].SoLuong = qty;
+                    }
+                }
+            }
+
+            public static void deleteBook(ref BindingList<DonHang> cart, string bookID)
+            {
+                for (int i = 0; i < cart.Count; i++)
+                {
+                    if (cart[i].MaSach == bookID)
+                    {
+                        cart.RemoveAt(i);
+                    }
+                }
+            }
+
+            public static double getTotal(BindingList<DonHang> cart)
+            {
+                double total = 0;
+                for(int i = 0;i < cart.Count; i++)
+                {
+                    total += cart[i].GiaTien * cart[i].SoLuong;
+                }
+                return total;
+            }
+
+            public static double getTax(double total)
+            {
+                double tax = 0;
+                tax = 0.1 * total;
+                return tax;
+            }
+
+        }
+
         public paymentStaff()
         {
             InitializeComponent();
-            var list = new System.Collections.Generic.List<Books>();
-            list.Add(new Books() { InfoBook = "MSS0001XX - Sự cứu rỗi của thánh nữ (2019) - Higashino Keigo", Amount = 2, Price = 10000, Del = false });
-            list.Add(new Books() { InfoBook = "MSS0001XX - Sự cứu rỗi của thánh nữ (2019) - Higashino Keigo", Amount = 2, Price = 10000, Del = false });
-            list.Add(new Books() { InfoBook = "MSS0001XX - Sự cứu rỗi của thánh nữ (2019) - Higashino Keigo", Amount = 2, Price = 10000, Del = false });
-            list.Add(new Books() { InfoBook = "MSS0001XX - Sự cứu rỗi của thánh nữ (2019) - Higashino Keigo", Amount = 2, Price = 10000, Del = false });
-            lvBooks.ItemsSource = list;
+            var db = new QuanLyCuaHangBanSachEntities();          
+            booksInDatabase = db.Saches.ToList();   
         }
 
-        public class Books
+        private void AddBookButton_Click(object sender, RoutedEventArgs e)
         {
-            public string InfoBook { get; set; }
-            public int Amount { get; set; }
-            public long Price { get; set; }
-            public bool Del { get; set; }
+            var bookID = maSachTextBox.Text;
+            bool isValid = ThuNganBUS.isVaLidBook(booksInDatabase, bookID);
+            if( isValid == false )
+            {
+                MessageBox.Show("Sách vừa nhập không có trong dữ liệu");
+            }
+            else
+            {
+                ThuNganBUS.addBookToCart(ref booksInCart,booksInDatabase,bookID);
+                lvBooks.ItemsSource = booksInCart;
+            }
+
+            var total = ThuNganBUS.getTotal(booksInCart);
+            var tax = ThuNganBUS.getTax(total);
+            TaxTextBlock.Text = tax.ToString() + " đ";
+            TotalPriceTextBlock.Text = total.ToString() + " đ";
+            
+        }
+
+        private void LvBooks_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+        
+        }
+
+        private void BookQuantityTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var textBox = sender as TextBox;
+            if(textBox.Text != "")
+            { 
+                var newQuantity =Int32.Parse(textBox.Text);
+                ThuNganBUS.updateCart(ref booksInCart, newQuantity ,(string)textBox.Tag);
+                lvBooks.ItemsSource = booksInCart;
+
+                var total = ThuNganBUS.getTotal(booksInCart);
+                var tax = ThuNganBUS.getTax(total);
+                TaxTextBlock.Text = tax.ToString() + " đ";
+                TotalPriceTextBlock.Text = total.ToString() + " đ";
+            }
+        }
+
+        private void DeleteBookButton_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            ThuNganBUS.deleteBook(ref booksInCart, button.Tag.ToString());
+
+            lvBooks.ItemsSource = booksInCart;
+            var total = ThuNganBUS.getTotal(booksInCart);
+            var tax = ThuNganBUS.getTax(total);
+            TaxTextBlock.Text = tax.ToString() + " đ";
+            TotalPriceTextBlock.Text = total.ToString() + " đ";
         }
     }
 }

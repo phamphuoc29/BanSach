@@ -20,12 +20,12 @@
                 <Label Content="Nhập mã sách" FontWeight="Bold" FontSize="20"/>
                 <StackPanel Orientation="Horizontal">
                     <TextBox Name="maSachTextBox" Width="316" Height="35"/>
-                    <Button Content="Thêm" Background="Aqua" FontSize="15" Width="124" Height="35" Margin="10"/>
+                    <Button Name="AddBookButton" Click="AddBookButton_Click" Content="Thêm" FontWeight="Bold" Background="DodgerBlue" FontSize="15" Width="124" Height="35" Margin="10"/>
                 </StackPanel>
                 <Label Content="Áp dụng khuyến mãi khách hàng" FontWeight="Bold" FontSize="20"/>
                 <StackPanel Orientation="Horizontal">
                     <TextBox Name="KMaiTextBox" Width="316" Height="35"/>
-                    <Button Content="Áp dụng" Background="Aqua" FontSize="15" Width="124" Height="35" Margin="10"/>
+                    <Button Content="Áp dụng" Background="DodgerBlue" FontSize="15" Width="124" FontWeight="Bold"  Height="35" Margin="10"/>
                 </StackPanel>
                 <ListBox Height="168" Margin="0,5,32,0">
                     <ListBoxItem>
@@ -67,37 +67,60 @@
             </StackPanel>
             <StackPanel Margin="40,0,0,0" Width="782">
                 <DockPanel Height="400" LastChildFill="True">
-                    <ListView Name="lvBooks" DockPanel.Dock="Right" Width="728">
+                    <ListView x:Name="lvBooks" DockPanel.Dock="Right" Width="728" SelectionChanged="LvBooks_SelectionChanged">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Sách" Width="480" DisplayMemberBinding="{Binding InfoBook}"/>
-                                <GridViewColumn Header="SL" Width="30" DisplayMemberBinding="{Binding Amount}" />
-                                <GridViewColumn Header="Giá tiền" Width="130" DisplayMemberBinding="{Binding Price}" />
-                                <GridViewColumn Header="Xóa" Width="70" DisplayMemberBinding="{Binding Del}" />
+                                <GridViewColumn Header="Sách" Width="480">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding MaSach}"/>
+                                                <TextBlock Text=" - "/>
+                                                <TextBlock Text="{Binding TenSach}"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="SL" Width="40">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox x:Name="BookQuantityTextBox" Tag="{Binding MaSach}" Text="{Binding SoLuong}"  TextChanged="BookQuantityTextBox_TextChanged" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Giá tiền" Width="130" DisplayMemberBinding="{Binding GiaTien}" />
+                                <GridViewColumn Header="Xóa" Width="70">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button x:Name="DeleteBookButton" Width="25" Height="25" Background="Red" Tag="{Binding MaSach}" Click="DeleteBookButton_Click">
+                                                <StackPanel>
+                                                    <Image Source="Img/remove.png"></Image>
+                                                </StackPanel>
+                                            </Button>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
                             </GridView>
                         </ListView.View>
                     </ListView>
                 </DockPanel>
                 <StackPanel Margin="30,0,30,0">
-                    <StackPanel Orientation="Horizontal" Margin="3">
-                        <TextBlock Text="Tổng cộng: " FontSize="15"/>
-                        <TextBlock Text="360,000" FontSize="15"/>
-                    </StackPanel>
+
                     <StackPanel Orientation="Horizontal" Margin="3">
                         <TextBlock Text="Thuế VAT: " FontSize="15"/>
-                        <TextBlock Text="+20,000" FontSize="15"/>
+                        <TextBlock x:Name="TaxTextBlock" Text="" FontSize="15"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="3">
                         <TextBlock Text="Giảm giá: " FontSize="15"/>
-                        <TextBlock Text="-30,000" FontSize="15"/>
+                        <TextBlock x:Name="DisCountTextBlock" Text="-30,000" FontSize="15"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="5">
-                        <TextBlock Text="Giảm giá: " FontSize="20" FontWeight="Bold"/>
-                        <TextBlock Text="-30,000" FontSize="20" FontWeight="Bold"/>
+                        <TextBlock Text="TỔNG CỘNG: " FontSize="20" FontWeight="Bold"/>
+                        <TextBlock x:Name="TotalPriceTextBlock" Text="" FontSize="20" FontWeight="Bold"/>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
-        <Button Content="Thanh Toán" FontWeight="Bold" FontSize="40" Width="1284" Height="68" Background="BlueViolet" Canvas.Left="28" Canvas.Top="639"/>
+        <Button Content="Thanh Toán" FontWeight="Bold" FontSize="40" Width="1284" Height="68" Background="DeepSkyBlue" Canvas.Left="28" Canvas.Top="639"/>
     </Canvas>
 </Window>

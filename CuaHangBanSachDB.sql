@@ -122,17 +122,4 @@ CREATE TABLE ThongKeNam
 	TongChiTieu MONEY NOT NULL,
 	LoiNhuan MONEY NOT NULL,
 )
-GO
-
-CREATE TABLE Users
-(
-	UserName CHAR(20) NOT NULL PRIMARY KEY,
-	Pass CHAR(20) NOT NULL,
-	PhanQuyen BIT NOT NULL -- 0: Nhân viên, 1: Quản lý
-)
-
-INSERT INTO dbo.Users( UserName, Pass, PhanQuyen )
-VALUES  ( 'nhanvien', 'nhanvien', 0 )
-INSERT INTO dbo.Users( UserName, Pass, PhanQuyen )
-VALUES  ( 'quanly', 'quanly', 1 )
-GO
+Go
