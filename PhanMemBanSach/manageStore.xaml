@@ -41,7 +41,7 @@
                             </DockPanel>
                         </StackPanel>
                         <StackPanel>
-                            <ListView Name="lvInfoBooks" MouseDoubleClick="LvInfoBooks_MouseDoubleClick">
+                            <ListView Name="lvInfoBooks" MouseDoubleClick="LvInfoBooks_MouseDoubleClick" ItemsSource="{Binding ListBook,UpdateSourceTrigger=PropertyChanged}">
                                 <ListView.View>
                                     <GridView>
                                         <GridViewColumn Width="40">
@@ -54,13 +54,12 @@
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
-                                        <GridViewColumn Header="Mã hàng" Width="150" DisplayMemberBinding="{Binding IDBook}"/>
-                                        <GridViewColumn Header="Tựa sách" Width="350" DisplayMemberBinding="{Binding NameBook}"/>
-                                        <GridViewColumn Header="Giá tiền" Width="150" DisplayMemberBinding="{Binding Price}"/>
-                                        <GridViewColumn Header="Số lượng" Width="130" DisplayMemberBinding="{Binding Amount}"/>
-                                        <GridViewColumn Header="Tác giả" Width="190" DisplayMemberBinding="{Binding Author}"/>
-                                        <GridViewColumn Header="NXB" Width="150" DisplayMemberBinding="{Binding Publish}"/>
-                                        <GridViewColumn Header="Ngày cập nhật" Width="200" DisplayMemberBinding="{Binding DateUpdate}"/>
+                                        <GridViewColumn Header="Mã hàng" Width="150" DisplayMemberBinding="{Binding MaSach}"/>
+                                        <GridViewColumn Header="Tựa sách" Width="350" DisplayMemberBinding="{Binding TenSach}"/>
+                                        <GridViewColumn Header="Tác giả" Width="150" DisplayMemberBinding="{Binding TacGia}"/>
+                                        <GridViewColumn Header="Nhà xuất bản" Width="130" DisplayMemberBinding="{Binding NhaXuatBan}"/>
+                                        <GridViewColumn Header="Số lượng" Width="190" DisplayMemberBinding="{Binding SoLuong}"/>
+                                        <GridViewColumn Header="Gia tien" Width="150" DisplayMemberBinding="{Binding GiaTienBan}"/>
                                     </GridView>
                                 </ListView.View>
                             </ListView>

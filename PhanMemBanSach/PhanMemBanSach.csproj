@@ -78,6 +78,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CuaHangBanSachModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataProvider.cs" />
     <Compile Include="HoaDon.cs">
       <DependentUpon>CuaHangBanSachModel.tt</DependentUpon>
     </Compile>
@@ -105,6 +106,7 @@
     <Compile Include="ThongKeThang.cs">
       <DependentUpon>CuaHangBanSachModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\StoreManagementVM.cs" />
     <Page Include="AddBooks.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
