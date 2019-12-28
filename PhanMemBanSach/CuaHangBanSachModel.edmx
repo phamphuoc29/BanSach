@@ -78,7 +78,7 @@
           <Property Name="TacGia" Type="nvarchar" MaxLength="100" />
           <Property Name="NhaXuatBan" Type="nvarchar" MaxLength="100" />
           <Property Name="SoLuong" Type="int" Nullable="false" />
-          <Property Name="GiaTienBan" Type="float" Nullable="false" />
+          <Property Name="GiaTienBan" Type="money" Nullable="false" />
         </EntityType>
         <EntityType Name="ThongKeNam">
           <Key>
@@ -120,6 +120,14 @@
           <Property Name="TongChiTieu" Type="money" Nullable="false" />
           <Property Name="LoiNhuan" Type="money" Nullable="false" />
         </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserName" />
+          </Key>
+          <Property Name="UserName" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="Pass" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="PhanQuyen" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityContainer Name="QuanLyCuaHangBanSachModelStoreContainer">
           <EntitySet Name="ChiTietHoaDon" EntityType="Self.ChiTietHoaDon" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChiTietPhieuNhap" EntityType="Self.ChiTietPhieuNhap" Schema="dbo" store:Type="Tables" />
@@ -132,6 +140,7 @@
           <EntitySet Name="ThongKeNgay" EntityType="Self.ThongKeNgay" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ThongKeQuy" EntityType="Self.ThongKeQuy" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ThongKeThang" EntityType="Self.ThongKeThang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -211,7 +220,7 @@
           <Property Name="TacGia" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="NhaXuatBan" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="SoLuong" Type="Int32" Nullable="false" />
-          <Property Name="GiaTienBan" Type="Double" Nullable="false" />
+          <Property Name="GiaTienBan" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
         </EntityType>
         <EntityType Name="ThongKeNam">
           <Key>
@@ -253,6 +262,14 @@
           <Property Name="TongChiTieu" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="LoiNhuan" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
         </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserName" />
+          </Key>
+          <Property Name="UserName" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Pass" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="PhanQuyen" Type="Boolean" Nullable="false" />
+        </EntityType>
         <EntityContainer Name="QuanLyCuaHangBanSachEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ChiTietHoaDons" EntityType="Self.ChiTietHoaDon" />
           <EntitySet Name="ChiTietPhieuNhaps" EntityType="Self.ChiTietPhieuNhap" />
@@ -265,6 +282,7 @@
           <EntitySet Name="ThongKeNgays" EntityType="Self.ThongKeNgay" />
           <EntitySet Name="ThongKeQuys" EntityType="Self.ThongKeQuy" />
           <EntitySet Name="ThongKeThangs" EntityType="Self.ThongKeThang" />
+          <EntitySet Name="Users" EntityType="Self.User" />
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -390,6 +408,15 @@
                 <ScalarProperty Name="DoanhThu" ColumnName="DoanhThu" />
                 <ScalarProperty Name="TongChiTieu" ColumnName="TongChiTieu" />
                 <ScalarProperty Name="LoiNhuan" ColumnName="LoiNhuan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="QuanLyCuaHangBanSachModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Pass" ColumnName="Pass" />
+                <ScalarProperty Name="PhanQuyen" ColumnName="PhanQuyen" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

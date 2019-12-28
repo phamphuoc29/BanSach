@@ -31,7 +31,7 @@ namespace PhanMemBanSach
             public string MaSach { get; set; }
             public string TenSach { get; set; }
             public int SoLuong { get; set; }
-            public double GiaTien { get; set; } 
+            public decimal GiaTien { get; set; } 
         }
 
 
@@ -100,9 +100,9 @@ namespace PhanMemBanSach
                 }
             }
 
-            public static double getTotal(BindingList<DonHang> cart)
+            public static decimal getTotal(BindingList<DonHang> cart)
             {
-                double total = 0;
+                decimal total = 0;
                 for(int i = 0;i < cart.Count; i++)
                 {
                     total += cart[i].GiaTien * cart[i].SoLuong;
@@ -110,10 +110,10 @@ namespace PhanMemBanSach
                 return total;
             }
 
-            public static double getTax(double total)
+            public static decimal getTax(decimal total)
             {
-                double tax = 0;
-                tax = 0.1 * total;
+                decimal tax = 0;
+                tax = (decimal)0.1 * total;
                 return tax;
             }
 

@@ -12,13 +12,10 @@ namespace PhanMemBanSach
     using System;
     using System.Collections.Generic;
     
-    public partial class Sach
+    public partial class User
     {
-        public string MaSach { get; set; }
-        public string TenSach { get; set; }
-        public string TacGia { get; set; }
-        public string NhaXuatBan { get; set; }
-        public int SoLuong { get; set; }
-        public decimal GiaTienBan { get; set; }
+        public string UserName { get; set; }
+        public string Pass { get; set; }
+        public bool PhanQuyen { get; set; }
     }
 }

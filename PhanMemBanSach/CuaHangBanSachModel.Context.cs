@@ -36,5 +36,6 @@ namespace PhanMemBanSach
         public virtual DbSet<ThongKeNgay> ThongKeNgays { get; set; }
         public virtual DbSet<ThongKeQuy> ThongKeQuys { get; set; }
         public virtual DbSet<ThongKeThang> ThongKeThangs { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

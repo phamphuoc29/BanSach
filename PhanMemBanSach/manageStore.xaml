@@ -56,9 +56,9 @@
                                         </GridViewColumn>
                                         <GridViewColumn Header="Mã hàng" Width="150" DisplayMemberBinding="{Binding MaSach}"/>
                                         <GridViewColumn Header="Tựa sách" Width="350" DisplayMemberBinding="{Binding TenSach}"/>
-                                        <GridViewColumn Header="Tác giả" Width="150" DisplayMemberBinding="{Binding TacGia}"/>
-                                        <GridViewColumn Header="Nhà xuất bản" Width="130" DisplayMemberBinding="{Binding NhaXuatBan}"/>
-                                        <GridViewColumn Header="Số lượng" Width="190" DisplayMemberBinding="{Binding SoLuong}"/>
+                                        <GridViewColumn Header="Tác giả" Width="200" DisplayMemberBinding="{Binding TacGia}"/>
+                                        <GridViewColumn Header="Nhà xuất bản" Width="200" DisplayMemberBinding="{Binding NhaXuatBan}"/>
+                                        <GridViewColumn Header="Số lượng" Width="100" DisplayMemberBinding="{Binding SoLuong}"/>
                                         <GridViewColumn Header="Gia tien" Width="150" DisplayMemberBinding="{Binding GiaTienBan}"/>
                                     </GridView>
                                 </ListView.View>
