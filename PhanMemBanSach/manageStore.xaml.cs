@@ -1,6 +1,8 @@
 ﻿using PhanMemBanSach.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,12 +22,14 @@ namespace PhanMemBanSach
     /// </summary>
     public partial class manageStore : Window
     {
-        StoreManagementVM storeManaVM;
+        BindingList<Sach> booksInDB;
+        QuanLyCuaHangBanSachEntities db = new QuanLyCuaHangBanSachEntities();
+        // StoreManagementVM storeManaVM;
         public manageStore()
         {
             InitializeComponent();
-            storeManaVM = new StoreManagementVM();
-            DataContext = storeManaVM;
+            booksInDB = new BindingList<Sach>(db.Saches.ToList());
+            lvInfoBooks.ItemsSource = booksInDB;
         }
 
         public class Customers
@@ -56,9 +60,7 @@ namespace PhanMemBanSach
         private void EditBookButton_Click(object sender, RoutedEventArgs e)
         {
             var screen = new EditBooks();
-            screen.ShowDialog();
         }
-
         private void DelBookButton_Click(object sender, RoutedEventArgs e)
         {
             var screen = new DeleteBooks();
@@ -67,10 +69,17 @@ namespace PhanMemBanSach
 
         private void LvInfoBooks_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var screen = new DetailBooks();
-            screen.ShowDialog();
+            var book = (Sach)lvInfoBooks.SelectedItem;
+            var screen = new DetailBooks(book.MaSach,book.TenSach,book.SoLuong,book.GiaTienBan,book.TacGia,book.NhaXuatBan);
+            if (screen.ShowDialog() == true)
+            {
+                MessageBox.Show("Thay đổi thành công");
+               // booksInDB.Clear();
+                booksInDB = new BindingList<Sach>(db.Saches.ToList());
+             //   lvCustomer.Items.Clear();
+                lvInfoBooks.ItemsSource = booksInDB;
+            }
         }
-
         private void AddCusButton_Click(object sender, RoutedEventArgs e)
         {
             var screen = new AddCustomer();

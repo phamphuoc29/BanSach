@@ -33,33 +33,21 @@
                     <DockPanel>
                         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
                             <Button Content="Nhập hàng" Name="addBooks" Click="AddBooks_Click" Width="160" Height="50" Margin="10" Background="Aqua"/>
-                            <Button Content="Sửa" Name="EditBookButton" Click="EditBookButton_Click" Width="160" Height="50" Margin="10" Background="LightGreen"/>
-                            <Button Content="Xóa" Name="DelBookButton" Click="DelBookButton_Click" Width="160" Height="50" Margin="10" Background="Red"/>
-                            <DockPanel Margin="200,0,0,0">
+                            <DockPanel Margin="400,0,0,0">
                                 <Button Content="Tìm kiếm" DockPanel.Dock="Right" Width="160" Height="50" Margin="10"/>
                                 <TextBox DockPanel.Dock="Right" Height="50" Width="450" Name="searchBookTextBox"/>
                             </DockPanel>
                         </StackPanel>
                         <StackPanel>
-                            <ListView Name="lvInfoBooks" MouseDoubleClick="LvInfoBooks_MouseDoubleClick" ItemsSource="{Binding ListBook,UpdateSourceTrigger=PropertyChanged}">
+                            <ListView Name="lvInfoBooks" MouseDoubleClick="LvInfoBooks_MouseDoubleClick">
                                 <ListView.View>
                                     <GridView>
-                                        <GridViewColumn Width="40">
-                                            <GridViewColumn.Header>
-                                                <CheckBox></CheckBox>
-                                            </GridViewColumn.Header>
-                                            <GridViewColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <CheckBox></CheckBox>
-                                                </DataTemplate>
-                                            </GridViewColumn.CellTemplate>
-                                        </GridViewColumn>
                                         <GridViewColumn Header="Mã hàng" Width="150" DisplayMemberBinding="{Binding MaSach}"/>
                                         <GridViewColumn Header="Tựa sách" Width="350" DisplayMemberBinding="{Binding TenSach}"/>
-                                        <GridViewColumn Header="Tác giả" Width="200" DisplayMemberBinding="{Binding TacGia}"/>
-                                        <GridViewColumn Header="Nhà xuất bản" Width="200" DisplayMemberBinding="{Binding NhaXuatBan}"/>
-                                        <GridViewColumn Header="Số lượng" Width="100" DisplayMemberBinding="{Binding SoLuong}"/>
-                                        <GridViewColumn Header="Gia tien" Width="150" DisplayMemberBinding="{Binding GiaTienBan}"/>
+                                        <GridViewColumn Header="Tác giả" Width="150" DisplayMemberBinding="{Binding TacGia}"/>
+                                        <GridViewColumn Header="Nhà xuất bản" Width="130" DisplayMemberBinding="{Binding NhaXuatBan}"/>
+                                        <GridViewColumn Header="Số lượng" Width="190" DisplayMemberBinding="{Binding SoLuong}"/>
+                                        <GridViewColumn Header="Giá tiền" Width="150" DisplayMemberBinding="{Binding GiaTienBan}"/>
                                     </GridView>
                                 </ListView.View>
                             </ListView>
@@ -72,7 +60,7 @@
                             <Button Content="Thêm" Name="addCusButton" Click="AddCusButton_Click" Width="160" Height="50" Margin="10" Background="Aqua"/>
                             <Button Content="Sửa" Name="editCusButton" Click="EditCusButton_Click" Width="160" Height="50" Margin="10" Background="LightGreen"/>
                             <Button Content="Xóa" Name="delCusButton" Click="DelCusButton_Click" Width="160" Height="50" Margin="10" Background="Red"/>
-                            <DockPanel Margin="200,0,0,0">
+                            <DockPanel Margin="100,0,0,0">
                                 <Button Content="Tìm kiếm" DockPanel.Dock="Right" Width="160" Height="50" Margin="10"/>
                                 <TextBox DockPanel.Dock="Right" Height="50" Width="450" Name="searchCustomerTextBox"/>
                             </DockPanel>
@@ -120,7 +108,7 @@
                             <Button Content="Thêm sự kiện giảm giá" Width="456" Height="50" Background="YellowGreen"/>
                         </StackPanel>
                         <DockPanel Margin="10">
-                            <DockPanel DockPanel.Dock="Top" Width="890">
+                            <DockPanel DockPanel.Dock="Top" Width="700">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                     <Button Content="Hủy" Width="150" Height="50" Margin="5,0,5,0" Background="LightBlue"/>
                                     <Button Content="Lưu" Width="150" Height="50" Margin="5,0,20,0" Background="LightBlue"/>
@@ -237,7 +225,7 @@
                                 <TextBox Name="Different" Margin="200,0,0,0" Width="624" Height="40"/>
                             </StackPanel>
                             <StackPanel>
-                                <Button Content="Lưu" Width="100" Height="40" Background="LightBlue" HorizontalAlignment="Right" Margin="0,40,195,0"/>
+                                <Button Content="Lưu" Width="100" Height="40" Background="LightBlue" HorizontalAlignment="Right" Margin="0,10,450,0" />
                             </StackPanel>
                         </StackPanel>
                     </StackPanel>

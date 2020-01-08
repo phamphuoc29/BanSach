@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="89ce959ebad74bfa8eb2fdfe990e260b" Name="Diagram1">
+      <Diagram DiagramId="96ee98d85edb4adeba64bef29816552e" Name="Diagram1">
         <EntityTypeShape EntityType="QuanLyCuaHangBanSachModel.ChiTietHoaDon" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QuanLyCuaHangBanSachModel.ChiTietPhieuNhap" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QuanLyCuaHangBanSachModel.HoaDon" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
@@ -16,7 +16,6 @@
         <EntityTypeShape EntityType="QuanLyCuaHangBanSachModel.ThongKeNgay" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QuanLyCuaHangBanSachModel.ThongKeQuy" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QuanLyCuaHangBanSachModel.ThongKeThang" Width="1.5" PointX="2.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyCuaHangBanSachModel.User" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

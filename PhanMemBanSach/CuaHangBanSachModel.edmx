@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="QuanLyCuaHangBanSachModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="QuanLyCuaHangBanSachModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ChiTietHoaDon">
           <Key>
             <PropertyRef Name="HoaDon" />
@@ -33,8 +33,8 @@
           <Property Name="MaHD" Type="int" Nullable="false" />
           <Property Name="NgayLap" Type="datetime" Nullable="false" />
           <Property Name="KhachHang" Type="char" MaxLength="10" />
-          <Property Name="HinhThucThanhToan" Type="bit" Nullable="false" />
           <Property Name="TongGiaTriHD" Type="money" Nullable="false" />
+          <Property Name="TAX" Type="money" Nullable="false" />
         </EntityType>
         <EntityType Name="KhachHang">
           <Key>
@@ -78,7 +78,7 @@
           <Property Name="TacGia" Type="nvarchar" MaxLength="100" />
           <Property Name="NhaXuatBan" Type="nvarchar" MaxLength="100" />
           <Property Name="SoLuong" Type="int" Nullable="false" />
-          <Property Name="GiaTienBan" Type="money" Nullable="false" />
+          <Property Name="GiaTienBan" Type="float" Nullable="false" />
         </EntityType>
         <EntityType Name="ThongKeNam">
           <Key>
@@ -120,14 +120,6 @@
           <Property Name="TongChiTieu" Type="money" Nullable="false" />
           <Property Name="LoiNhuan" Type="money" Nullable="false" />
         </EntityType>
-        <EntityType Name="Users">
-          <Key>
-            <PropertyRef Name="UserName" />
-          </Key>
-          <Property Name="UserName" Type="char" MaxLength="20" Nullable="false" />
-          <Property Name="Pass" Type="char" MaxLength="20" Nullable="false" />
-          <Property Name="PhanQuyen" Type="bit" Nullable="false" />
-        </EntityType>
         <EntityContainer Name="QuanLyCuaHangBanSachModelStoreContainer">
           <EntitySet Name="ChiTietHoaDon" EntityType="Self.ChiTietHoaDon" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChiTietPhieuNhap" EntityType="Self.ChiTietPhieuNhap" Schema="dbo" store:Type="Tables" />
@@ -140,10 +132,8 @@
           <EntitySet Name="ThongKeNgay" EntityType="Self.ThongKeNgay" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ThongKeQuy" EntityType="Self.ThongKeQuy" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ThongKeThang" EntityType="Self.ThongKeThang" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QuanLyCuaHangBanSachModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -175,8 +165,8 @@
           <Property Name="MaHD" Type="Int32" Nullable="false" />
           <Property Name="NgayLap" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="KhachHang" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
-          <Property Name="HinhThucThanhToan" Type="Boolean" Nullable="false" />
           <Property Name="TongGiaTriHD" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="TAX" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
         </EntityType>
         <EntityType Name="KhachHang">
           <Key>
@@ -220,7 +210,7 @@
           <Property Name="TacGia" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="NhaXuatBan" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="SoLuong" Type="Int32" Nullable="false" />
-          <Property Name="GiaTienBan" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="GiaTienBan" Type="Double" Nullable="false" />
         </EntityType>
         <EntityType Name="ThongKeNam">
           <Key>
@@ -262,14 +252,6 @@
           <Property Name="TongChiTieu" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="LoiNhuan" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
         </EntityType>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="UserName" />
-          </Key>
-          <Property Name="UserName" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="Pass" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="PhanQuyen" Type="Boolean" Nullable="false" />
-        </EntityType>
         <EntityContainer Name="QuanLyCuaHangBanSachEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ChiTietHoaDons" EntityType="Self.ChiTietHoaDon" />
           <EntitySet Name="ChiTietPhieuNhaps" EntityType="Self.ChiTietPhieuNhap" />
@@ -282,7 +264,6 @@
           <EntitySet Name="ThongKeNgays" EntityType="Self.ThongKeNgay" />
           <EntitySet Name="ThongKeQuys" EntityType="Self.ThongKeQuy" />
           <EntitySet Name="ThongKeThangs" EntityType="Self.ThongKeThang" />
-          <EntitySet Name="Users" EntityType="Self.User" />
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -314,10 +295,10 @@
           <EntitySetMapping Name="HoaDons">
             <EntityTypeMapping TypeName="QuanLyCuaHangBanSachModel.HoaDon">
               <MappingFragment StoreEntitySet="HoaDon">
+                <ScalarProperty Name="TAX" ColumnName="TAX" />
                 <ScalarProperty Name="MaHD" ColumnName="MaHD" />
                 <ScalarProperty Name="NgayLap" ColumnName="NgayLap" />
                 <ScalarProperty Name="KhachHang" ColumnName="KhachHang" />
-                <ScalarProperty Name="HinhThucThanhToan" ColumnName="HinhThucThanhToan" />
                 <ScalarProperty Name="TongGiaTriHD" ColumnName="TongGiaTriHD" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -408,15 +389,6 @@
                 <ScalarProperty Name="DoanhThu" ColumnName="DoanhThu" />
                 <ScalarProperty Name="TongChiTieu" ColumnName="TongChiTieu" />
                 <ScalarProperty Name="LoiNhuan" ColumnName="LoiNhuan" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="QuanLyCuaHangBanSachModel.User">
-              <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Pass" ColumnName="Pass" />
-                <ScalarProperty Name="PhanQuyen" ColumnName="PhanQuyen" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

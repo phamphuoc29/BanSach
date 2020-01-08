@@ -73,20 +73,13 @@
     <Compile Include="ChiTietPhieuNhap.cs">
       <DependentUpon>CuaHangBanSachModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CuaHangBanSachModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CuaHangBanSachModel.Context.tt</DependentUpon>
-    </Compile>
     <Compile Include="CuaHangBanSachModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CuaHangBanSachModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CuaHangBanSachModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CuaHangBanSachModel.edmx</DependentUpon>
+    <Compile Include="Customer.xaml.cs">
+      <DependentUpon>Customer.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataProvider.cs" />
     <Compile Include="HoaDon.cs">
@@ -116,15 +109,16 @@
     <Compile Include="ThongKeThang.cs">
       <DependentUpon>CuaHangBanSachModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="User.cs">
-      <DependentUpon>CuaHangBanSachModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="ViewModels\StoreManagementVM.cs" />
     <Page Include="AddBooks.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddCustomer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Customer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -166,6 +160,16 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CuaHangBanSachModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CuaHangBanSachModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CuaHangBanSachModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CuaHangBanSachModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="DeleteBooks.xaml.cs">
       <DependentUpon>DeleteBooks.xaml</DependentUpon>
     </Compile>
@@ -192,10 +196,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="OptionDialog.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="paymentStaff.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -204,9 +204,6 @@
   <ItemGroup>
     <Compile Include="manageStore.xaml.cs">
       <DependentUpon>manageStore.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="OptionDialog.xaml.cs">
-      <DependentUpon>OptionDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="paymentStaff.xaml.cs">
       <DependentUpon>paymentStaff.xaml</DependentUpon>
@@ -250,12 +247,6 @@
     <Resource Include="Img\usericon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Img\remove.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="CuaHangBanSachModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>CuaHangBanSachModel.edmx</DependentUpon>
@@ -266,6 +257,10 @@
       <DependentUpon>CuaHangBanSachModel.edmx</DependentUpon>
       <LastGenOutput>CuaHangBanSachModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="Img\remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

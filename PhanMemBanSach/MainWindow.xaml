@@ -7,12 +7,22 @@
         mc:Ignorable="d"
         Title="Cửa hàng bán sách" Height="516" Width="800">
     <Canvas>
-        <Image Source="Img/user.png" Width="200" Height="200" Canvas.Left="275" Canvas.Top="31"/>
-        <Label Content="Tên đăng nhập:" Canvas.Left="200" Canvas.Top="252"/>
-        <TextBox Width="178" Height="25" Canvas.Left="297" Canvas.Top="253"/>
-        <Label Content="Mật khẩu:" Canvas.Left="200" Canvas.Top="300"/>
-        <PasswordBox Width="178" Height="25" Canvas.Left="297" Canvas.Top="300"/>
-        <Button Content="Log in" Width="80" Height="25" FontWeight="Bold" Background="LightBlue" Canvas.Left="297" Canvas.Top="348" Click="LoginButton_Click"/>
-        <TextBlock Name="failLogin" Width="260" Height="26" Foreground="Red" Canvas.Left="225" Canvas.Top="396"/>
+        <Canvas Name="MainCanvas">
+            <Image Source="Img/user.png" Width="200" Height="200" Canvas.Left="315" Canvas.Top="24"/>
+            <Label Content="Tên đăng nhập:" Canvas.Left="250" Canvas.Top="252"/>
+            <TextBox Name="AccountTextBox" Width="178" Height="25" Canvas.Left="368" Canvas.Top="253"/>
+            <Label Content="Mật khẩu:" Canvas.Left="250" Canvas.Top="300"/>
+            <PasswordBox Name="PasswordBox" Width="178" Height="25" Canvas.Left="368" Canvas.Top="301"/>
+            <Button Content="Log in" Width="80" Height="25" IsDefault="True" FontWeight="Bold" Background="CornflowerBlue" Canvas.Left="368" Canvas.Top="351" Click="LoginButton_Click"/>
+            <TextBlock Name="failLogin" Width="260" Height="26" Foreground="Red" Canvas.Left="225" Canvas.Top="396"/>
+        </Canvas>
+        <Canvas Name="OptionCavas" Visibility="Hidden">
+            <Button Name="Staff" Content=" Nhân viên&#x0a;đứng quầy" Foreground="White" FontWeight="Bold" Width="322" Height="112" FontSize="30" Background="LimeGreen" Click="Staff_Click" Canvas.Left="40" Canvas.Top="158"/>
+            <Button Name="Manager" Content="    Quản lí&#x0a;khách hàng" Foreground="White" FontWeight="Bold" Width="322" Height="112" FontSize="30" Background="OrangeRed" Click="Manager_Click"  Canvas.Left="423" Canvas.Top="158"/>
+            <Button Width="60" Height="60" Canvas.Left="722" Canvas.Top="10">
+                <Image Source="Img/usericon.png"/>
+            </Button>
+        </Canvas>
     </Canvas>
+
 </Window>
