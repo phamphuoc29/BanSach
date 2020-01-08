@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace PhanMemBanSach.ViewModels
 {
@@ -26,16 +28,21 @@ namespace PhanMemBanSach.ViewModels
             get => _listBook;
             set { _listBook = value; OnPropertyChanged(); }
         }
+        private Sach _selectedBook;
+        public Sach SelectedBook { get => _selectedBook; set { _selectedBook = value; OnPropertyChanged(); } }
         #endregion
 
         public StoreManagementVM()
         {
             ListBook = new ObservableCollection<Sach>();
-            var @books = DataProvider.Ins.DB.Saches;
-            foreach (var book in @books)
-            {
-                ListBook.Add(book);
-            }
+            LoadBook();
+        }
+
+        public void LoadBook()
+        {
+            ListBook.Clear();
+
+            
         }
     }
 }

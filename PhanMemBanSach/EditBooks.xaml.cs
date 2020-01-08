@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -17,11 +20,71 @@ namespace PhanMemBanSach
     /// <summary>
     /// Interaction logic for EditBooks.xaml
     /// </summary>
-    public partial class EditBooks : Window
+    public partial class EditBooks : Window, INotifyPropertyChanged
     {
-        public EditBooks()
+        #region Implement INotifyPropertyChanged
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        #endregion
+
+        #region declare variable
+        private string _maSach;
+        public string MaSach { get=> _maSach; set { _maSach = value;OnPropertyChanged(); } }
+        private string _tenSach;
+        public string TenSach { get => _tenSach; set { _tenSach = value; OnPropertyChanged(); } }
+        private string _tacGia;
+        public string TacGia { get => _tacGia; set { _tacGia = value; OnPropertyChanged(); } }
+        private string _nhaXuatBan;
+        public string NhaXuatBan { get => _nhaXuatBan; set { _nhaXuatBan = value; OnPropertyChanged(); } }
+        private int _soLuong;
+        public int SoLuong { get => _soLuong; set { _soLuong = value; OnPropertyChanged(); } }
+        private decimal _giaTienBan;
+        public decimal GiaTienBan { get => _giaTienBan; set { _giaTienBan = value; OnPropertyChanged(); } }
+        #endregion
+
+        public EditBooks(Sach s)
         {
             InitializeComponent();
+            this.DataContext = this;
+
+            MaSach = s.MaSach;
+            TenSach = s.TenSach;
+            TacGia = s.TacGia;
+            NhaXuatBan = s.NhaXuatBan;
+            SoLuong = s.SoLuong;
+            GiaTienBan = s.GiaTienBan;
+        }
+
+        private void ButtonEdit_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                SqlConnection sqlConnect = new SqlConnection(DataProvider.Ins.DB.Database.Connection.ConnectionString);
+                SqlCommand sql = new SqlCommand("sp_UpdateBook", sqlConnect);
+                sql.CommandType = System.Data.CommandType.StoredProcedure;
+                sql.Parameters.AddWithValue("@maSach", MaSach);
+                sql.Parameters.AddWithValue("@tenSach",TenSach);
+                sql.Parameters.AddWithValue("@tacGia",TacGia);
+                sql.Parameters.AddWithValue("@NXB", NhaXuatBan);
+                sql.Parameters.AddWithValue("@soLuong", SoLuong);
+                sql.Parameters.AddWithValue("@giaTien",  GiaTienBan);
+                sqlConnect.Open();
+                int result = sql.ExecuteNonQuery();
+                DataProvider.Ins.DB.SaveChanges();
+                sqlConnect.Close();
+                if (result == 1)
+                    MessageBox.Show("Sửa sách thành công! ");
+            }catch(Exception ex)
+            {
+                MessageBox.Show("SQL error:" + ex.Message.ToString());
+            }
+        }
+        private void ButtonCancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -21,6 +21,10 @@ namespace PhanMemBanSach
     public partial class manageStore : Window
     {
         StoreManagementVM storeManaVM;
+
+        private string _searchString;
+        public string SearchString { get => _searchString; set { _searchString = value; } }
+
         public manageStore()
         {
             InitializeComponent();
@@ -28,23 +32,12 @@ namespace PhanMemBanSach
             DataContext = storeManaVM;
         }
 
-        public class Customers
+        private void Search_Click(object sender, RoutedEventArgs e)
         {
-            public string NumberPhone { get; set; }
-            public string NameCus { get; set; }
-            public string Birth { get; set; }
-            public string Email { get; set; }
-            public long Total { get; set; }
-            public string DateUpdate { get; set; }
-        }
+            if(SearchString != null)
+            {
 
-
-
-        public class Notification
-        {
-            public string Date { get; set; }
-            public string Act { get; set; }
-            public string Detail { get; set; }
+            }
         }
 
         private void AddBooks_Click(object sender, RoutedEventArgs e)
@@ -55,8 +48,14 @@ namespace PhanMemBanSach
 
         private void EditBookButton_Click(object sender, RoutedEventArgs e)
         {
-            var screen = new EditBooks();
-            screen.ShowDialog();
+            if (storeManaVM.SelectedBook != null)
+            {
+                var screen = new EditBooks(storeManaVM.SelectedBook);
+                screen.ShowDialog();
+                storeManaVM.LoadBook();
+            }
+            else
+                MessageBox.Show("Vui lòng chọn sách!");
         }
 
         private void DelBookButton_Click(object sender, RoutedEventArgs e)
@@ -67,8 +66,14 @@ namespace PhanMemBanSach
 
         private void LvInfoBooks_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var screen = new DetailBooks();
-            screen.ShowDialog();
+            if (storeManaVM.SelectedBook != null)
+            {
+                var screen = new DetailBooks(storeManaVM.SelectedBook);
+                screen.ShowDialog();
+                storeManaVM.LoadBook();
+            }
+            else
+                MessageBox.Show("Vui lòng chọn sách!");
         }
 
         private void AddCusButton_Click(object sender, RoutedEventArgs e)
@@ -94,5 +99,7 @@ namespace PhanMemBanSach
             var screen = new DetailCustomer();
             screen.ShowDialog();
         }
+
+
     }
 }
