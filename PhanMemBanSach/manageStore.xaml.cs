@@ -30,6 +30,8 @@ namespace PhanMemBanSach
         public manageStore()
         {
             InitializeComponent();
+            storeManaVM = new StoreManagementVM();
+            this.DataContext = storeManaVM;
         }
 
         private void Search_Click(object sender, RoutedEventArgs e)
@@ -52,7 +54,6 @@ namespace PhanMemBanSach
             {
                 var screen = new EditBooks(storeManaVM.SelectedBook);
                 screen.ShowDialog();
-                storeManaVM.LoadBook();
             }
             else
                 MessageBox.Show("Vui lòng chọn sách!");
@@ -69,7 +70,6 @@ namespace PhanMemBanSach
             {
                 var screen = new DetailBooks(storeManaVM.SelectedBook);
                 screen.ShowDialog();
-                storeManaVM.LoadBook();
             }
             else
                 MessageBox.Show("Vui lòng chọn sách!");

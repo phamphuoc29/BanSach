@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="QuanLyCuaHangBanSachModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="QuanLyCuaHangBanSachModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ChiTietHoaDon">
           <Key>
             <PropertyRef Name="HoaDon" />
@@ -33,8 +33,9 @@
           <Property Name="MaHD" Type="int" Nullable="false" />
           <Property Name="NgayLap" Type="datetime" Nullable="false" />
           <Property Name="KhachHang" Type="char" MaxLength="10" />
+          <Property Name="HinhThucThanhToan" Type="bit" Nullable="false" />
           <Property Name="TongGiaTriHD" Type="money" Nullable="false" />
-          <Property Name="TAX" Type="money" Nullable="false" />
+          <Property Name="Tax" Type="money" />
         </EntityType>
         <EntityType Name="KhachHang">
           <Key>
@@ -78,7 +79,7 @@
           <Property Name="TacGia" Type="nvarchar" MaxLength="100" />
           <Property Name="NhaXuatBan" Type="nvarchar" MaxLength="100" />
           <Property Name="SoLuong" Type="int" Nullable="false" />
-          <Property Name="GiaTienBan" Type="float" Nullable="false" />
+          <Property Name="GiaTienBan" Type="money" Nullable="false" />
         </EntityType>
         <EntityType Name="ThongKeNam">
           <Key>
@@ -120,6 +121,74 @@
           <Property Name="TongChiTieu" Type="money" Nullable="false" />
           <Property Name="LoiNhuan" Type="money" Nullable="false" />
         </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserName" />
+          </Key>
+          <Property Name="UserName" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="Pass" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="PhanQuyen" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__ChiTietHo__HoaDo__276EDEB3">
+          <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="1" />
+          <End Role="ChiTietHoaDon" Type="Self.ChiTietHoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HoaDon">
+              <PropertyRef Name="MaHD" />
+            </Principal>
+            <Dependent Role="ChiTietHoaDon">
+              <PropertyRef Name="HoaDon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ChiTietHo__MaSac__286302EC">
+          <End Role="Sach" Type="Self.Sach" Multiplicity="1" />
+          <End Role="ChiTietHoaDon" Type="Self.ChiTietHoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sach">
+              <PropertyRef Name="MaSach" />
+            </Principal>
+            <Dependent Role="ChiTietHoaDon">
+              <PropertyRef Name="MaSachMua" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ChiTietPh__MaSac__2A4B4B5E">
+          <End Role="Sach" Type="Self.Sach" Multiplicity="1" />
+          <End Role="ChiTietPhieuNhap" Type="Self.ChiTietPhieuNhap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sach">
+              <PropertyRef Name="MaSach" />
+            </Principal>
+            <Dependent Role="ChiTietPhieuNhap">
+              <PropertyRef Name="MaSachNhap" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ChiTietPh__Phieu__29572725">
+          <End Role="PhieuNhapSach" Type="Self.PhieuNhapSach" Multiplicity="1" />
+          <End Role="ChiTietPhieuNhap" Type="Self.ChiTietPhieuNhap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhieuNhapSach">
+              <PropertyRef Name="MaPN" />
+            </Principal>
+            <Dependent Role="ChiTietPhieuNhap">
+              <PropertyRef Name="PhieuNhap" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HoaDon__KhachHan__267ABA7A">
+          <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
+          <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KhachHang">
+              <PropertyRef Name="SDT_KH" />
+            </Principal>
+            <Dependent Role="HoaDon">
+              <PropertyRef Name="KhachHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="QuanLyCuaHangBanSachModelStoreContainer">
           <EntitySet Name="ChiTietHoaDon" EntityType="Self.ChiTietHoaDon" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChiTietPhieuNhap" EntityType="Self.ChiTietPhieuNhap" Schema="dbo" store:Type="Tables" />
@@ -132,8 +201,30 @@
           <EntitySet Name="ThongKeNgay" EntityType="Self.ThongKeNgay" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ThongKeQuy" EntityType="Self.ThongKeQuy" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ThongKeThang" EntityType="Self.ThongKeThang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__ChiTietHo__HoaDo__276EDEB3" Association="Self.FK__ChiTietHo__HoaDo__276EDEB3">
+            <End Role="HoaDon" EntitySet="HoaDon" />
+            <End Role="ChiTietHoaDon" EntitySet="ChiTietHoaDon" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ChiTietHo__MaSac__286302EC" Association="Self.FK__ChiTietHo__MaSac__286302EC">
+            <End Role="Sach" EntitySet="Sach" />
+            <End Role="ChiTietHoaDon" EntitySet="ChiTietHoaDon" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ChiTietPh__MaSac__2A4B4B5E" Association="Self.FK__ChiTietPh__MaSac__2A4B4B5E">
+            <End Role="Sach" EntitySet="Sach" />
+            <End Role="ChiTietPhieuNhap" EntitySet="ChiTietPhieuNhap" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ChiTietPh__Phieu__29572725" Association="Self.FK__ChiTietPh__Phieu__29572725">
+            <End Role="PhieuNhapSach" EntitySet="PhieuNhapSach" />
+            <End Role="ChiTietPhieuNhap" EntitySet="ChiTietPhieuNhap" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HoaDon__KhachHan__267ABA7A" Association="Self.FK__HoaDon__KhachHan__267ABA7A">
+            <End Role="KhachHang" EntitySet="KhachHang" />
+            <End Role="HoaDon" EntitySet="HoaDon" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QuanLyCuaHangBanSachModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -146,6 +237,8 @@
           <Property Name="MaSachMua" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="SoLuongMua" Type="Int32" Nullable="false" />
           <Property Name="TongTien" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="HoaDon1" Relationship="Self.FK__ChiTietHo__HoaDo__276EDEB3" FromRole="ChiTietHoaDon" ToRole="HoaDon" />
+          <NavigationProperty Name="Sach" Relationship="Self.FK__ChiTietHo__MaSac__286302EC" FromRole="ChiTietHoaDon" ToRole="Sach" />
         </EntityType>
         <EntityType Name="ChiTietPhieuNhap">
           <Key>
@@ -157,6 +250,8 @@
           <Property Name="SoLuongNhap" Type="Int32" Nullable="false" />
           <Property Name="GiaTienNhap" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
           <Property Name="TongTien" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="Sach" Relationship="Self.FK__ChiTietPh__MaSac__2A4B4B5E" FromRole="ChiTietPhieuNhap" ToRole="Sach" />
+          <NavigationProperty Name="PhieuNhapSach" Relationship="Self.FK__ChiTietPh__Phieu__29572725" FromRole="ChiTietPhieuNhap" ToRole="PhieuNhapSach" />
         </EntityType>
         <EntityType Name="HoaDon">
           <Key>
@@ -165,8 +260,11 @@
           <Property Name="MaHD" Type="Int32" Nullable="false" />
           <Property Name="NgayLap" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="KhachHang" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="HinhThucThanhToan" Type="Boolean" Nullable="false" />
           <Property Name="TongGiaTriHD" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <Property Name="TAX" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Tax" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="ChiTietHoaDons" Relationship="Self.FK__ChiTietHo__HoaDo__276EDEB3" FromRole="HoaDon" ToRole="ChiTietHoaDon" />
+          <NavigationProperty Name="KhachHang1" Relationship="Self.FK__HoaDon__KhachHan__267ABA7A" FromRole="HoaDon" ToRole="KhachHang" />
         </EntityType>
         <EntityType Name="KhachHang">
           <Key>
@@ -177,6 +275,7 @@
           <Property Name="NgaySinh" Type="DateTime" Precision="0" />
           <Property Name="Email" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
           <Property Name="TongGiaoDich" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="HoaDons" Relationship="Self.FK__HoaDon__KhachHan__267ABA7A" FromRole="KhachHang" ToRole="HoaDon" />
         </EntityType>
         <EntityType Name="PhieuNhapSach">
           <Key>
@@ -185,6 +284,7 @@
           <Property Name="MaPN" Type="Int32" Nullable="false" />
           <Property Name="NgayNhap" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="TongGiaTriNhap" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="ChiTietPhieuNhaps" Relationship="Self.FK__ChiTietPh__Phieu__29572725" FromRole="PhieuNhapSach" ToRole="ChiTietPhieuNhap" />
         </EntityType>
         <EntityType Name="QuanLyChiTieu">
           <Key>
@@ -210,7 +310,9 @@
           <Property Name="TacGia" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="NhaXuatBan" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="SoLuong" Type="Int32" Nullable="false" />
-          <Property Name="GiaTienBan" Type="Double" Nullable="false" />
+          <Property Name="GiaTienBan" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="ChiTietHoaDons" Relationship="Self.FK__ChiTietHo__MaSac__286302EC" FromRole="Sach" ToRole="ChiTietHoaDon" />
+          <NavigationProperty Name="ChiTietPhieuNhaps" Relationship="Self.FK__ChiTietPh__MaSac__2A4B4B5E" FromRole="Sach" ToRole="ChiTietPhieuNhap" />
         </EntityType>
         <EntityType Name="ThongKeNam">
           <Key>
@@ -252,6 +354,74 @@
           <Property Name="TongChiTieu" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="LoiNhuan" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
         </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserName" />
+          </Key>
+          <Property Name="UserName" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Pass" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="PhanQuyen" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__ChiTietHo__HoaDo__276EDEB3">
+          <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="1" />
+          <End Role="ChiTietHoaDon" Type="Self.ChiTietHoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HoaDon">
+              <PropertyRef Name="MaHD" />
+            </Principal>
+            <Dependent Role="ChiTietHoaDon">
+              <PropertyRef Name="HoaDon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ChiTietHo__MaSac__286302EC">
+          <End Role="Sach" Type="Self.Sach" Multiplicity="1" />
+          <End Role="ChiTietHoaDon" Type="Self.ChiTietHoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sach">
+              <PropertyRef Name="MaSach" />
+            </Principal>
+            <Dependent Role="ChiTietHoaDon">
+              <PropertyRef Name="MaSachMua" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ChiTietPh__MaSac__2A4B4B5E">
+          <End Role="Sach" Type="Self.Sach" Multiplicity="1" />
+          <End Role="ChiTietPhieuNhap" Type="Self.ChiTietPhieuNhap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sach">
+              <PropertyRef Name="MaSach" />
+            </Principal>
+            <Dependent Role="ChiTietPhieuNhap">
+              <PropertyRef Name="MaSachNhap" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ChiTietPh__Phieu__29572725">
+          <End Role="PhieuNhapSach" Type="Self.PhieuNhapSach" Multiplicity="1" />
+          <End Role="ChiTietPhieuNhap" Type="Self.ChiTietPhieuNhap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhieuNhapSach">
+              <PropertyRef Name="MaPN" />
+            </Principal>
+            <Dependent Role="ChiTietPhieuNhap">
+              <PropertyRef Name="PhieuNhap" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HoaDon__KhachHan__267ABA7A">
+          <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
+          <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KhachHang">
+              <PropertyRef Name="SDT_KH" />
+            </Principal>
+            <Dependent Role="HoaDon">
+              <PropertyRef Name="KhachHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="QuanLyCuaHangBanSachEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ChiTietHoaDons" EntityType="Self.ChiTietHoaDon" />
           <EntitySet Name="ChiTietPhieuNhaps" EntityType="Self.ChiTietPhieuNhap" />
@@ -264,6 +434,27 @@
           <EntitySet Name="ThongKeNgays" EntityType="Self.ThongKeNgay" />
           <EntitySet Name="ThongKeQuys" EntityType="Self.ThongKeQuy" />
           <EntitySet Name="ThongKeThangs" EntityType="Self.ThongKeThang" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK__ChiTietHo__HoaDo__276EDEB3" Association="Self.FK__ChiTietHo__HoaDo__276EDEB3">
+            <End Role="HoaDon" EntitySet="HoaDons" />
+            <End Role="ChiTietHoaDon" EntitySet="ChiTietHoaDons" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ChiTietHo__MaSac__286302EC" Association="Self.FK__ChiTietHo__MaSac__286302EC">
+            <End Role="Sach" EntitySet="Saches" />
+            <End Role="ChiTietHoaDon" EntitySet="ChiTietHoaDons" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ChiTietPh__MaSac__2A4B4B5E" Association="Self.FK__ChiTietPh__MaSac__2A4B4B5E">
+            <End Role="Sach" EntitySet="Saches" />
+            <End Role="ChiTietPhieuNhap" EntitySet="ChiTietPhieuNhaps" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ChiTietPh__Phieu__29572725" Association="Self.FK__ChiTietPh__Phieu__29572725">
+            <End Role="PhieuNhapSach" EntitySet="PhieuNhapSaches" />
+            <End Role="ChiTietPhieuNhap" EntitySet="ChiTietPhieuNhaps" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HoaDon__KhachHan__267ABA7A" Association="Self.FK__HoaDon__KhachHan__267ABA7A">
+            <End Role="KhachHang" EntitySet="KhachHangs" />
+            <End Role="HoaDon" EntitySet="HoaDons" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -295,11 +486,12 @@
           <EntitySetMapping Name="HoaDons">
             <EntityTypeMapping TypeName="QuanLyCuaHangBanSachModel.HoaDon">
               <MappingFragment StoreEntitySet="HoaDon">
-                <ScalarProperty Name="TAX" ColumnName="TAX" />
                 <ScalarProperty Name="MaHD" ColumnName="MaHD" />
                 <ScalarProperty Name="NgayLap" ColumnName="NgayLap" />
                 <ScalarProperty Name="KhachHang" ColumnName="KhachHang" />
+                <ScalarProperty Name="HinhThucThanhToan" ColumnName="HinhThucThanhToan" />
                 <ScalarProperty Name="TongGiaTriHD" ColumnName="TongGiaTriHD" />
+                <ScalarProperty Name="Tax" ColumnName="Tax" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -389,6 +581,15 @@
                 <ScalarProperty Name="DoanhThu" ColumnName="DoanhThu" />
                 <ScalarProperty Name="TongChiTieu" ColumnName="TongChiTieu" />
                 <ScalarProperty Name="LoiNhuan" ColumnName="LoiNhuan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="QuanLyCuaHangBanSachModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Pass" ColumnName="Pass" />
+                <ScalarProperty Name="PhanQuyen" ColumnName="PhanQuyen" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -32,7 +32,8 @@ CREATE TABLE HoaDon
 	NgayLap DATETIME NOT NULL,
 	KhachHang CHAR(10) NULL, -- SĐT
 	HinhThucThanhToan BIT NOT NULL, -- 0: Tiền mặt, 1: Trả thẻ
-	TongGiaTriHD MONEY NOT NULL
+	TongGiaTriHD MONEY NOT NULL,
+	Tax money null,
 )
 GO
 

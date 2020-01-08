@@ -43,7 +43,7 @@ namespace PhanMemBanSach
             public string MaSach { get; set; }
             public string TenSach { get; set; }
             public int SoLuong { get; set; }
-            public double GiaTien { get; set; }
+            public decimal GiaTien { get; set; }
         }
         BindingList<DonHang> booksInCart = new BindingList<DonHang>();
 
@@ -110,9 +110,9 @@ namespace PhanMemBanSach
                 }
             }
 
-            public static double getTotal(BindingList<DonHang> cart)
+            public static decimal getTotal(BindingList<DonHang> cart)
             {
-                double total = 0;
+                decimal total = 0;
                 for (int i = 0; i < cart.Count; i++)
                 {
                     total += cart[i].GiaTien * cart[i].SoLuong;
@@ -120,10 +120,10 @@ namespace PhanMemBanSach
                 return total;
             }
 
-            public static double getTax(double total)
+            public static decimal getTax(decimal total)
             {
-                double tax = 0;
-                tax = 0.1 * total;
+                decimal tax = 0;
+                tax = (decimal)0.1 * total;
                 return tax;
             }
 
@@ -174,7 +174,7 @@ namespace PhanMemBanSach
                     customer[0].TongGiaoDich += (decimal)total;
                 }
            
-                db.HoaDons.Add(new HoaDon() { MaHD  = Int32.Parse(maHoaDon),  NgayLap = DateTime.Now, KhachHang = customerPhone, TongGiaTriHD = (decimal)total, TAX = (decimal)tax });
+                db.HoaDons.Add(new HoaDon() { MaHD  = Int32.Parse(maHoaDon),  NgayLap = DateTime.Now, KhachHang = customerPhone, TongGiaTriHD = (decimal)total, Tax = (decimal)tax });
 
 
                 //luu xuong chi tiet hoa don

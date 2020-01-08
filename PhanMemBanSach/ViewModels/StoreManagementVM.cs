@@ -22,27 +22,20 @@ namespace PhanMemBanSach.ViewModels
         #endregion
 
         #region Declare variable
-        private ObservableCollection<Sach> _listBook;
-        public ObservableCollection<Sach> ListBook
-        {
-            get => _listBook;
-            set { _listBook = value; OnPropertyChanged(); }
-        }
+        private BindingList<Sach> listBook;
+        public BindingList<Sach> ListBook { get => listBook; set { listBook = value;OnPropertyChanged(); } }
         private Sach _selectedBook;
         public Sach SelectedBook { get => _selectedBook; set { _selectedBook = value; OnPropertyChanged(); } }
         #endregion
 
         public StoreManagementVM()
         {
-            ListBook = new ObservableCollection<Sach>();
-            LoadBook();
+            ListBook = new BindingList<Sach>(DataProvider.Ins.DB.Saches.ToList());
         }
 
         public void LoadBook()
         {
             ListBook.Clear();
-
-            
         }
     }
 }
