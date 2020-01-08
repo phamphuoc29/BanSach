@@ -7,51 +7,55 @@
         mc:Ignorable="d"
         Title="paymentStaff" Height="750" Width="1380" WindowState="Maximized">
     <Canvas>
-        <Button Width="60" Height="60" Canvas.Left="1300" Canvas.Top="10">
-            <Image Source="Img/usericon.png" Width="60"/>
-        </Button>
-        <Button Width="60" Height="60" Canvas.Left="10" Canvas.Top="10">
-            <Image Source="Img/back.png"/>
-        </Button>
         <TextBlock Text="NHÂN VIÊN ĐỨNG QUẦY" Foreground="Red" FontWeight="Bold" FontSize="30" Canvas.Left="450" Canvas.Top="10"/>
-        <TextBlock Text="Ngày: 01/01/2017" Background="LightGray" Canvas.Left="570" Canvas.Top="55" Height="15" Width="99"/>
+        <TextBlock Name="DateTextBlock" Background="LightGray" Canvas.Left="570" Canvas.Top="55" Height="15" Width="99" FontWeight="Bold" Padding="15,0,0,0"/>
         <StackPanel Width="1284" Height="542" Canvas.Left="28" Canvas.Top="92" Orientation="Horizontal">
-            <StackPanel Width="484" Margin="0,0,0,-134">
-                <Label Content="Nhập mã sách" FontWeight="Bold" FontSize="20"/>
+            <StackPanel Width="484" Margin="0,0,0,-83">
                 <StackPanel Orientation="Horizontal">
-                    <TextBox Name="maSachTextBox" Width="316" Height="35"/>
+                    <Label Content="Nhập mã sách              " FontWeight="Bold" FontSize="20"/>
+                    <Label Content="Số lượng" FontWeight="Bold" FontSize="20"></Label>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Name="maSachTextBox" Width="217" Height="35" Padding="5,5,5,5"/>
+                    <TextBox Name="QuantityTextBox" Width="80" Height="35" Margin="10,0,0,0" Padding="5,5,5,5"></TextBox>
                     <Button Name="AddBookButton" Click="AddBookButton_Click" Content="Thêm" FontWeight="Bold" Background="DodgerBlue" FontSize="15" Width="124" Height="35" Margin="10"/>
                 </StackPanel>
-                <Label Content="Áp dụng khuyến mãi khách hàng" FontWeight="Bold" FontSize="20"/>
+                <Label Content="Nhập số điện thoại khách hàng" FontWeight="Bold" FontSize="20"/>
                 <StackPanel Orientation="Horizontal">
-                    <TextBox Name="KMaiTextBox" Width="316" Height="35"/>
-                    <Button Content="Áp dụng" Background="DodgerBlue" FontSize="15" Width="124" FontWeight="Bold"  Height="35" Margin="10"/>
+                    <TextBox Name="KMaiTextBox" Width="316" Height="35" Padding="5,5,5,5"/>
+                    <Button Name="CustomerButton" Click="CustomerButton_Click" Content="Áp dụng" Background="DodgerBlue" FontSize="15" Width="124" FontWeight="Bold"  Height="35" Margin="10"/>
                 </StackPanel>
-                <ListBox Height="168" Margin="0,5,32,0">
-                    <ListBoxItem>
-                        <StackPanel Orientation="Horizontal" Margin="3">
-                            <TextBlock Text="Tên: " FontSize="15"/>
-                            <TextBlock Text="Trần Văn A" FontSize="15"/>
-                        </StackPanel>
-                    </ListBoxItem>
-                    <ListBoxItem>
-                        <StackPanel Orientation="Horizontal" Margin="3">
-                            <TextBlock Text="SĐT: " FontSize="15"/>
-                            <TextBlock Text="0123456789" FontSize="15"/>
-                        </StackPanel>
-                    </ListBoxItem>
-                    <ListBoxItem>
-                        <StackPanel Orientation="Horizontal" Margin="3">
-                            <TextBlock Text="Ngày sinh: " FontSize="15"/>
-                            <TextBlock Text="01/01/1980" FontSize="15"/>
-                        </StackPanel>
-                    </ListBoxItem>
-                    <ListBoxItem>
-                        <StackPanel Orientation="Horizontal" Margin="3">
-                            <TextBlock Text="Tổng tiền giao dịch: " FontSize="15"/>
-                            <TextBlock Text="123,000 đ" FontSize="15"/>
-                        </StackPanel>
-                    </ListBoxItem>
+                <TextBlock Text="Thông tin khách hàng:"></TextBlock>
+                <ListBox Name="CustomerListBox" Height="168" Margin="0,5,32,0">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Tên khách hàng: " FontSize="16"></TextBlock>
+                                    <TextBlock Text="{Binding TenKH}"  FontSize="16" FontWeight="Bold"></TextBlock>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="SĐT khách hàng: "  FontSize="16"></TextBlock>
+                                    <TextBlock Text="{Binding SDT_KH}"  FontSize="16" FontWeight="Bold"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Email khách hàng: " FontSize="16"></TextBlock>
+                                    <TextBlock Text="{Binding Email}" FontSize="16" FontWeight="Bold"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Ngày sinh khách hàng: " FontSize="16"></TextBlock>
+                                    <TextBlock Text="{Binding NgaySinh}" FontSize="16" FontWeight="Bold"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Tổng giao dịch: " FontSize="16"></TextBlock>
+                                    <TextBlock Text="{Binding TongGiaoDich}" FontSize="16" FontWeight="Bold"></TextBlock>
+                                </StackPanel>
+
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+
                 </ListBox>
                 <ListBox Height="160" Margin="0,5,32,0" Background="Azure">
                     <ListBoxItem>
@@ -65,9 +69,9 @@
                     </ListBoxItem>
                 </ListBox>
             </StackPanel>
-            <StackPanel Margin="40,0,0,0" Width="782">
+            <StackPanel Margin="40,0,0,-83" Width="758">
                 <DockPanel Height="400" LastChildFill="True">
-                    <ListView x:Name="lvBooks" DockPanel.Dock="Right" Width="728" SelectionChanged="LvBooks_SelectionChanged">
+                    <ListView x:Name="lvBooks" DockPanel.Dock="Right" Width="745">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Sách" Width="480">
@@ -84,7 +88,10 @@
                                 <GridViewColumn Header="SL" Width="40">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBox x:Name="BookQuantityTextBox" Tag="{Binding MaSach}" Text="{Binding SoLuong}"  TextChanged="BookQuantityTextBox_TextChanged" />
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="x"/>
+                                                <TextBlock Text="{Binding SoLuong}"/>
+                                            </StackPanel>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
@@ -94,7 +101,7 @@
                                         <DataTemplate>
                                             <Button x:Name="DeleteBookButton" Width="25" Height="25" Background="Red" Tag="{Binding MaSach}" Click="DeleteBookButton_Click">
                                                 <StackPanel>
-                                                    <Image Source="Img/remove.png"></Image>
+                                                    <Image Source="Img/remove.png"/>
                                                 </StackPanel>
                                             </Button>
                                         </DataTemplate>
@@ -104,15 +111,15 @@
                         </ListView.View>
                     </ListView>
                 </DockPanel>
-                <StackPanel Margin="30,0,30,0">
+                <StackPanel Margin="10,0">
 
                     <StackPanel Orientation="Horizontal" Margin="3">
-                        <TextBlock Text="Thuế VAT: " FontSize="15"/>
+                        <TextBlock Text="Thuế VAT: " FontSize="15" FontWeight="DemiBold"/>
                         <TextBlock x:Name="TaxTextBlock" Text="" FontSize="15"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="3">
-                        <TextBlock Text="Giảm giá: " FontSize="15"/>
-                        <TextBlock x:Name="DisCountTextBlock" Text="-30,000" FontSize="15"/>
+                        <TextBlock Text="Giảm giá: " FontSize="15" FontWeight="DemiBold"/>
+                        <TextBlock x:Name="DisCountTextBlock" FontSize="15"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="5">
                         <TextBlock Text="TỔNG CỘNG: " FontSize="20" FontWeight="Bold"/>
@@ -121,6 +128,7 @@
                 </StackPanel>
             </StackPanel>
         </StackPanel>
-        <Button Content="Thanh Toán" FontWeight="Bold" FontSize="40" Width="1284" Height="68" Background="DeepSkyBlue" Canvas.Left="28" Canvas.Top="639"/>
+        <Button Content="Thanh Toán" Name="CheckoutButton" Click="CheckoutButton_Click" FontWeight="Bold" FontSize="40" Width="755" Height="68" Background="DodgerBlue" Canvas.Left="557" Canvas.Top="584"/>
     </Canvas>
+
 </Window>

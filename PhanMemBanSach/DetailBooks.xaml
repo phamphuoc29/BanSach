@@ -21,6 +21,6 @@
         <TextBox Name="Price" Text="{Binding GiaTienBan,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="365" Height="30" Canvas.Left="165" Canvas.Top="165"/>
         <TextBox Name="Amount" Text="{Binding SoLuong,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="365" Height="30" Canvas.Left="165" Canvas.Top="207"/>
         <TextBox Name="Author" Text="{Binding TacGia,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="365" Height="30" Canvas.Left="165" Canvas.Top="249"/>
-        <TextBox Name="NXB" Text="{Binding NhaXuatBan,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="365" Height="30" Canvas.Left="165" Canvas.Top="286"/>
+            <TextBox Name="NXB" Text="{Binding NhaXuatBan,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="365" Height="30" Canvas.Left="165" Canvas.Top="286"/>
     </Canvas>
 </Window>

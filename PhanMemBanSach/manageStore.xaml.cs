@@ -1,6 +1,8 @@
 ﻿using PhanMemBanSach.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,8 +30,6 @@ namespace PhanMemBanSach
         public manageStore()
         {
             InitializeComponent();
-            storeManaVM = new StoreManagementVM();
-            DataContext = storeManaVM;
         }
 
         private void Search_Click(object sender, RoutedEventArgs e)
@@ -57,7 +57,6 @@ namespace PhanMemBanSach
             else
                 MessageBox.Show("Vui lòng chọn sách!");
         }
-
         private void DelBookButton_Click(object sender, RoutedEventArgs e)
         {
             var screen = new DeleteBooks();
@@ -75,7 +74,6 @@ namespace PhanMemBanSach
             else
                 MessageBox.Show("Vui lòng chọn sách!");
         }
-
         private void AddCusButton_Click(object sender, RoutedEventArgs e)
         {
             var screen = new AddCustomer();
