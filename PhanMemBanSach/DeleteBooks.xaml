@@ -8,7 +8,7 @@
         Title="DeleteBooks" Height="193.874" Width="421.146">
     <Canvas>
         <Label Content="Bạn có chắc muốn xóa không?" FontSize="30"/>
-        <Button Content="CÓ" FontSize="20" Width="150" Height="50" Background="LightBlue" Canvas.Left="25" Canvas.Top="73"/>
-        <Button Content="KHÔNG" FontSize="20" Width="150" Height="50" Background="LightBlue" Canvas.Left="229" Canvas.Top="73"/>
+        <Button Content="CÓ" Click="Ok_Click" FontSize="20" Width="150" Height="50" Background="LightBlue" Canvas.Left="25" Canvas.Top="73"/>
+        <Button Content="KHÔNG" Click="Cancel_Click" FontSize="20" Width="150" Height="50" Background="LightBlue" Canvas.Left="229" Canvas.Top="73"/>
     </Canvas>
 </Window>

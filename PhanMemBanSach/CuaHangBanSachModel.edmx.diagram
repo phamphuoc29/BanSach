@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f33816338b38417ab4a6cc3217268548" Name="Diagram1">
+      <Diagram DiagramId="21562a3a622e4575a9b8e3bd21a6ae6f" Name="Diagram1">
         <EntityTypeShape EntityType="QuanLyCuaHangBanSachModel.ChiTietHoaDon" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="QuanLyCuaHangBanSachModel.ChiTietPhieuNhap" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QuanLyCuaHangBanSachModel.HoaDon" Width="1.5" PointX="0.75" PointY="10.625" IsExpanded="true" />
@@ -17,11 +17,11 @@
         <EntityTypeShape EntityType="QuanLyCuaHangBanSachModel.ThongKeQuy" Width="1.5" PointX="7.75" PointY="2" IsExpanded="true" />
         <EntityTypeShape EntityType="QuanLyCuaHangBanSachModel.ThongKeThang" Width="1.5" PointX="7.75" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="QuanLyCuaHangBanSachModel.User" Width="1.5" PointX="4.75" PointY="9" IsExpanded="true" />
-        <AssociationConnector Association="QuanLyCuaHangBanSachModel.FK__ChiTietHo__HoaDo__276EDEB3" ManuallyRouted="false" />
-        <AssociationConnector Association="QuanLyCuaHangBanSachModel.FK__ChiTietHo__MaSac__286302EC" ManuallyRouted="false" />
-        <AssociationConnector Association="QuanLyCuaHangBanSachModel.FK__ChiTietPh__MaSac__2A4B4B5E" ManuallyRouted="false" />
-        <AssociationConnector Association="QuanLyCuaHangBanSachModel.FK__ChiTietPh__Phieu__29572725" ManuallyRouted="false" />
-        <AssociationConnector Association="QuanLyCuaHangBanSachModel.FK__HoaDon__KhachHan__267ABA7A" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyCuaHangBanSachModel.FK__ChiTietHo__HoaDo__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyCuaHangBanSachModel.FK__ChiTietHo__MaSac__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyCuaHangBanSachModel.FK__ChiTietPh__MaSac__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyCuaHangBanSachModel.FK__ChiTietPh__Phieu__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyCuaHangBanSachModel.FK__HoaDon__KhachHan__2C3393D0" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

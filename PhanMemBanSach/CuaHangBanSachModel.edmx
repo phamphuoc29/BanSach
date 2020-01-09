@@ -129,7 +129,7 @@
           <Property Name="Pass" Type="char" MaxLength="20" Nullable="false" />
           <Property Name="PhanQuyen" Type="bit" Nullable="false" />
         </EntityType>
-        <Association Name="FK__ChiTietHo__HoaDo__276EDEB3">
+        <Association Name="FK__ChiTietHo__HoaDo__2D27B809">
           <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="1" />
           <End Role="ChiTietHoaDon" Type="Self.ChiTietHoaDon" Multiplicity="*" />
           <ReferentialConstraint>
@@ -141,7 +141,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ChiTietHo__MaSac__286302EC">
+        <Association Name="FK__ChiTietHo__MaSac__2E1BDC42">
           <End Role="Sach" Type="Self.Sach" Multiplicity="1" />
           <End Role="ChiTietHoaDon" Type="Self.ChiTietHoaDon" Multiplicity="*" />
           <ReferentialConstraint>
@@ -153,7 +153,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ChiTietPh__MaSac__2A4B4B5E">
+        <Association Name="FK__ChiTietPh__MaSac__300424B4">
           <End Role="Sach" Type="Self.Sach" Multiplicity="1" />
           <End Role="ChiTietPhieuNhap" Type="Self.ChiTietPhieuNhap" Multiplicity="*" />
           <ReferentialConstraint>
@@ -165,7 +165,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ChiTietPh__Phieu__29572725">
+        <Association Name="FK__ChiTietPh__Phieu__2F10007B">
           <End Role="PhieuNhapSach" Type="Self.PhieuNhapSach" Multiplicity="1" />
           <End Role="ChiTietPhieuNhap" Type="Self.ChiTietPhieuNhap" Multiplicity="*" />
           <ReferentialConstraint>
@@ -177,7 +177,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__HoaDon__KhachHan__267ABA7A">
+        <Association Name="FK__HoaDon__KhachHan__2C3393D0">
           <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
           <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
           <ReferentialConstraint>
@@ -189,6 +189,35 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="DeleteBook" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="maSach" Type="char" Mode="In" />
+        </Function>
+        <Function Name="insertChiTieu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="thang" Type="int" Mode="In" />
+          <Parameter Name="nam" Type="int" Mode="In" />
+          <Parameter Name="tienDien" Type="money" Mode="In" />
+          <Parameter Name="tienNuoc" Type="money" Mode="In" />
+          <Parameter Name="tienLuong" Type="money" Mode="In" />
+          <Parameter Name="tienInternet" Type="money" Mode="In" />
+          <Parameter Name="tienThueNha" Type="money" Mode="In" />
+          <Parameter Name="khac" Type="money" Mode="In" />
+        </Function>
+        <Function Name="SearchBook" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="string" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UpdateBook" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="maSach" Type="char" Mode="In" />
+          <Parameter Name="tenSach" Type="nvarchar" Mode="In" />
+          <Parameter Name="tacGia" Type="nvarchar" Mode="In" />
+          <Parameter Name="NXB" Type="nvarchar" Mode="In" />
+          <Parameter Name="sl" Type="int" Mode="In" />
+          <Parameter Name="giaTien" Type="money" Mode="In" />
+        </Function>
+        <Function Name="ViewBooks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ViewChiTieu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="thang" Type="int" Mode="In" />
+          <Parameter Name="nam" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="QuanLyCuaHangBanSachModelStoreContainer">
           <EntitySet Name="ChiTietHoaDon" EntityType="Self.ChiTietHoaDon" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChiTietPhieuNhap" EntityType="Self.ChiTietPhieuNhap" Schema="dbo" store:Type="Tables" />
@@ -202,23 +231,23 @@
           <EntitySet Name="ThongKeQuy" EntityType="Self.ThongKeQuy" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ThongKeThang" EntityType="Self.ThongKeThang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__ChiTietHo__HoaDo__276EDEB3" Association="Self.FK__ChiTietHo__HoaDo__276EDEB3">
+          <AssociationSet Name="FK__ChiTietHo__HoaDo__2D27B809" Association="Self.FK__ChiTietHo__HoaDo__2D27B809">
             <End Role="HoaDon" EntitySet="HoaDon" />
             <End Role="ChiTietHoaDon" EntitySet="ChiTietHoaDon" />
           </AssociationSet>
-          <AssociationSet Name="FK__ChiTietHo__MaSac__286302EC" Association="Self.FK__ChiTietHo__MaSac__286302EC">
+          <AssociationSet Name="FK__ChiTietHo__MaSac__2E1BDC42" Association="Self.FK__ChiTietHo__MaSac__2E1BDC42">
             <End Role="Sach" EntitySet="Sach" />
             <End Role="ChiTietHoaDon" EntitySet="ChiTietHoaDon" />
           </AssociationSet>
-          <AssociationSet Name="FK__ChiTietPh__MaSac__2A4B4B5E" Association="Self.FK__ChiTietPh__MaSac__2A4B4B5E">
+          <AssociationSet Name="FK__ChiTietPh__MaSac__300424B4" Association="Self.FK__ChiTietPh__MaSac__300424B4">
             <End Role="Sach" EntitySet="Sach" />
             <End Role="ChiTietPhieuNhap" EntitySet="ChiTietPhieuNhap" />
           </AssociationSet>
-          <AssociationSet Name="FK__ChiTietPh__Phieu__29572725" Association="Self.FK__ChiTietPh__Phieu__29572725">
+          <AssociationSet Name="FK__ChiTietPh__Phieu__2F10007B" Association="Self.FK__ChiTietPh__Phieu__2F10007B">
             <End Role="PhieuNhapSach" EntitySet="PhieuNhapSach" />
             <End Role="ChiTietPhieuNhap" EntitySet="ChiTietPhieuNhap" />
           </AssociationSet>
-          <AssociationSet Name="FK__HoaDon__KhachHan__267ABA7A" Association="Self.FK__HoaDon__KhachHan__267ABA7A">
+          <AssociationSet Name="FK__HoaDon__KhachHan__2C3393D0" Association="Self.FK__HoaDon__KhachHan__2C3393D0">
             <End Role="KhachHang" EntitySet="KhachHang" />
             <End Role="HoaDon" EntitySet="HoaDon" />
           </AssociationSet>
@@ -237,8 +266,8 @@
           <Property Name="MaSachMua" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="SoLuongMua" Type="Int32" Nullable="false" />
           <Property Name="TongTien" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <NavigationProperty Name="HoaDon1" Relationship="Self.FK__ChiTietHo__HoaDo__276EDEB3" FromRole="ChiTietHoaDon" ToRole="HoaDon" />
-          <NavigationProperty Name="Sach" Relationship="Self.FK__ChiTietHo__MaSac__286302EC" FromRole="ChiTietHoaDon" ToRole="Sach" />
+          <NavigationProperty Name="HoaDon1" Relationship="Self.FK__ChiTietHo__HoaDo__2D27B809" FromRole="ChiTietHoaDon" ToRole="HoaDon" />
+          <NavigationProperty Name="Sach" Relationship="Self.FK__ChiTietHo__MaSac__2E1BDC42" FromRole="ChiTietHoaDon" ToRole="Sach" />
         </EntityType>
         <EntityType Name="ChiTietPhieuNhap">
           <Key>
@@ -250,8 +279,8 @@
           <Property Name="SoLuongNhap" Type="Int32" Nullable="false" />
           <Property Name="GiaTienNhap" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
           <Property Name="TongTien" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <NavigationProperty Name="Sach" Relationship="Self.FK__ChiTietPh__MaSac__2A4B4B5E" FromRole="ChiTietPhieuNhap" ToRole="Sach" />
-          <NavigationProperty Name="PhieuNhapSach" Relationship="Self.FK__ChiTietPh__Phieu__29572725" FromRole="ChiTietPhieuNhap" ToRole="PhieuNhapSach" />
+          <NavigationProperty Name="Sach" Relationship="Self.FK__ChiTietPh__MaSac__300424B4" FromRole="ChiTietPhieuNhap" ToRole="Sach" />
+          <NavigationProperty Name="PhieuNhapSach" Relationship="Self.FK__ChiTietPh__Phieu__2F10007B" FromRole="ChiTietPhieuNhap" ToRole="PhieuNhapSach" />
         </EntityType>
         <EntityType Name="HoaDon">
           <Key>
@@ -263,8 +292,8 @@
           <Property Name="HinhThucThanhToan" Type="Boolean" Nullable="false" />
           <Property Name="TongGiaTriHD" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="Tax" Type="Decimal" Precision="19" Scale="4" />
-          <NavigationProperty Name="ChiTietHoaDons" Relationship="Self.FK__ChiTietHo__HoaDo__276EDEB3" FromRole="HoaDon" ToRole="ChiTietHoaDon" />
-          <NavigationProperty Name="KhachHang1" Relationship="Self.FK__HoaDon__KhachHan__267ABA7A" FromRole="HoaDon" ToRole="KhachHang" />
+          <NavigationProperty Name="ChiTietHoaDons" Relationship="Self.FK__ChiTietHo__HoaDo__2D27B809" FromRole="HoaDon" ToRole="ChiTietHoaDon" />
+          <NavigationProperty Name="KhachHang1" Relationship="Self.FK__HoaDon__KhachHan__2C3393D0" FromRole="HoaDon" ToRole="KhachHang" />
         </EntityType>
         <EntityType Name="KhachHang">
           <Key>
@@ -275,7 +304,7 @@
           <Property Name="NgaySinh" Type="DateTime" Precision="0" />
           <Property Name="Email" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
           <Property Name="TongGiaoDich" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <NavigationProperty Name="HoaDons" Relationship="Self.FK__HoaDon__KhachHan__267ABA7A" FromRole="KhachHang" ToRole="HoaDon" />
+          <NavigationProperty Name="HoaDons" Relationship="Self.FK__HoaDon__KhachHan__2C3393D0" FromRole="KhachHang" ToRole="HoaDon" />
         </EntityType>
         <EntityType Name="PhieuNhapSach">
           <Key>
@@ -284,7 +313,7 @@
           <Property Name="MaPN" Type="Int32" Nullable="false" />
           <Property Name="NgayNhap" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="TongGiaTriNhap" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <NavigationProperty Name="ChiTietPhieuNhaps" Relationship="Self.FK__ChiTietPh__Phieu__29572725" FromRole="PhieuNhapSach" ToRole="ChiTietPhieuNhap" />
+          <NavigationProperty Name="ChiTietPhieuNhaps" Relationship="Self.FK__ChiTietPh__Phieu__2F10007B" FromRole="PhieuNhapSach" ToRole="ChiTietPhieuNhap" />
         </EntityType>
         <EntityType Name="QuanLyChiTieu">
           <Key>
@@ -311,8 +340,8 @@
           <Property Name="NhaXuatBan" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="SoLuong" Type="Int32" Nullable="false" />
           <Property Name="GiaTienBan" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <NavigationProperty Name="ChiTietHoaDons" Relationship="Self.FK__ChiTietHo__MaSac__286302EC" FromRole="Sach" ToRole="ChiTietHoaDon" />
-          <NavigationProperty Name="ChiTietPhieuNhaps" Relationship="Self.FK__ChiTietPh__MaSac__2A4B4B5E" FromRole="Sach" ToRole="ChiTietPhieuNhap" />
+          <NavigationProperty Name="ChiTietHoaDons" Relationship="Self.FK__ChiTietHo__MaSac__2E1BDC42" FromRole="Sach" ToRole="ChiTietHoaDon" />
+          <NavigationProperty Name="ChiTietPhieuNhaps" Relationship="Self.FK__ChiTietPh__MaSac__300424B4" FromRole="Sach" ToRole="ChiTietPhieuNhap" />
         </EntityType>
         <EntityType Name="ThongKeNam">
           <Key>
@@ -362,7 +391,7 @@
           <Property Name="Pass" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="PhanQuyen" Type="Boolean" Nullable="false" />
         </EntityType>
-        <Association Name="FK__ChiTietHo__HoaDo__276EDEB3">
+        <Association Name="FK__ChiTietHo__HoaDo__2D27B809">
           <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="1" />
           <End Role="ChiTietHoaDon" Type="Self.ChiTietHoaDon" Multiplicity="*" />
           <ReferentialConstraint>
@@ -374,7 +403,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ChiTietHo__MaSac__286302EC">
+        <Association Name="FK__ChiTietHo__MaSac__2E1BDC42">
           <End Role="Sach" Type="Self.Sach" Multiplicity="1" />
           <End Role="ChiTietHoaDon" Type="Self.ChiTietHoaDon" Multiplicity="*" />
           <ReferentialConstraint>
@@ -386,7 +415,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ChiTietPh__MaSac__2A4B4B5E">
+        <Association Name="FK__ChiTietPh__MaSac__300424B4">
           <End Role="Sach" Type="Self.Sach" Multiplicity="1" />
           <End Role="ChiTietPhieuNhap" Type="Self.ChiTietPhieuNhap" Multiplicity="*" />
           <ReferentialConstraint>
@@ -398,7 +427,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ChiTietPh__Phieu__29572725">
+        <Association Name="FK__ChiTietPh__Phieu__2F10007B">
           <End Role="PhieuNhapSach" Type="Self.PhieuNhapSach" Multiplicity="1" />
           <End Role="ChiTietPhieuNhap" Type="Self.ChiTietPhieuNhap" Multiplicity="*" />
           <ReferentialConstraint>
@@ -410,7 +439,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__HoaDon__KhachHan__267ABA7A">
+        <Association Name="FK__HoaDon__KhachHan__2C3393D0">
           <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
           <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
           <ReferentialConstraint>
@@ -435,27 +464,83 @@
           <EntitySet Name="ThongKeQuys" EntityType="Self.ThongKeQuy" />
           <EntitySet Name="ThongKeThangs" EntityType="Self.ThongKeThang" />
           <EntitySet Name="Users" EntityType="Self.User" />
-          <AssociationSet Name="FK__ChiTietHo__HoaDo__276EDEB3" Association="Self.FK__ChiTietHo__HoaDo__276EDEB3">
+          <AssociationSet Name="FK__ChiTietHo__HoaDo__2D27B809" Association="Self.FK__ChiTietHo__HoaDo__2D27B809">
             <End Role="HoaDon" EntitySet="HoaDons" />
             <End Role="ChiTietHoaDon" EntitySet="ChiTietHoaDons" />
           </AssociationSet>
-          <AssociationSet Name="FK__ChiTietHo__MaSac__286302EC" Association="Self.FK__ChiTietHo__MaSac__286302EC">
+          <AssociationSet Name="FK__ChiTietHo__MaSac__2E1BDC42" Association="Self.FK__ChiTietHo__MaSac__2E1BDC42">
             <End Role="Sach" EntitySet="Saches" />
             <End Role="ChiTietHoaDon" EntitySet="ChiTietHoaDons" />
           </AssociationSet>
-          <AssociationSet Name="FK__ChiTietPh__MaSac__2A4B4B5E" Association="Self.FK__ChiTietPh__MaSac__2A4B4B5E">
+          <AssociationSet Name="FK__ChiTietPh__MaSac__300424B4" Association="Self.FK__ChiTietPh__MaSac__300424B4">
             <End Role="Sach" EntitySet="Saches" />
             <End Role="ChiTietPhieuNhap" EntitySet="ChiTietPhieuNhaps" />
           </AssociationSet>
-          <AssociationSet Name="FK__ChiTietPh__Phieu__29572725" Association="Self.FK__ChiTietPh__Phieu__29572725">
+          <AssociationSet Name="FK__ChiTietPh__Phieu__2F10007B" Association="Self.FK__ChiTietPh__Phieu__2F10007B">
             <End Role="PhieuNhapSach" EntitySet="PhieuNhapSaches" />
             <End Role="ChiTietPhieuNhap" EntitySet="ChiTietPhieuNhaps" />
           </AssociationSet>
-          <AssociationSet Name="FK__HoaDon__KhachHan__267ABA7A" Association="Self.FK__HoaDon__KhachHan__267ABA7A">
+          <AssociationSet Name="FK__HoaDon__KhachHan__2C3393D0" Association="Self.FK__HoaDon__KhachHan__2C3393D0">
             <End Role="KhachHang" EntitySet="KhachHangs" />
             <End Role="HoaDon" EntitySet="HoaDons" />
           </AssociationSet>
+          <FunctionImport Name="DeleteBook">
+            <Parameter Name="maSach" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="insertChiTieu">
+            <Parameter Name="thang" Mode="In" Type="Int32" />
+            <Parameter Name="nam" Mode="In" Type="Int32" />
+            <Parameter Name="tienDien" Mode="In" Type="Decimal" />
+            <Parameter Name="tienNuoc" Mode="In" Type="Decimal" />
+            <Parameter Name="tienLuong" Mode="In" Type="Decimal" />
+            <Parameter Name="tienInternet" Mode="In" Type="Decimal" />
+            <Parameter Name="tienThueNha" Mode="In" Type="Decimal" />
+            <Parameter Name="khac" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="SearchBook" ReturnType="Collection(QuanLyCuaHangBanSachModel.SearchBook_Result)">
+            <Parameter Name="string" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateBook">
+            <Parameter Name="maSach" Mode="In" Type="String" />
+            <Parameter Name="tenSach" Mode="In" Type="String" />
+            <Parameter Name="tacGia" Mode="In" Type="String" />
+            <Parameter Name="NXB" Mode="In" Type="String" />
+            <Parameter Name="sl" Mode="In" Type="Int32" />
+            <Parameter Name="giaTien" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="ViewBooks" ReturnType="Collection(QuanLyCuaHangBanSachModel.ViewBooks_Result)" />
+          <FunctionImport Name="ViewChiTieu" ReturnType="Collection(QuanLyCuaHangBanSachModel.ViewChiTieu_Result)">
+            <Parameter Name="thang" Mode="In" Type="Int32" />
+            <Parameter Name="nam" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="SearchBook_Result">
+          <Property Type="String" Name="MaSach" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="TenSach" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="TacGia" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="NhaXuatBan" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="SoLuong" Nullable="false" />
+          <Property Type="Decimal" Name="GiaTienBan" Nullable="false" Precision="19" />
+        </ComplexType>
+        <ComplexType Name="ViewBooks_Result">
+          <Property Type="String" Name="MaSach" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="TenSach" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="TacGia" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="NhaXuatBan" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="SoLuong" Nullable="false" />
+          <Property Type="Decimal" Name="GiaTienBan" Nullable="false" Precision="19" />
+        </ComplexType>
+        <ComplexType Name="ViewChiTieu_Result">
+          <Property Type="Int16" Name="Thang" Nullable="false" />
+          <Property Type="Int16" Name="Nam" Nullable="false" />
+          <Property Type="Decimal" Name="TienDien" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="TienNuoc" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="TienLuongNhanVien" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="TienInternet" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="TienThueMatBang" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="ChiPhiKhac" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="TongChiTieu" Nullable="false" Precision="19" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -593,6 +678,48 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="DeleteBook" FunctionName="QuanLyCuaHangBanSachModel.Store.DeleteBook" />
+          <FunctionImportMapping FunctionImportName="insertChiTieu" FunctionName="QuanLyCuaHangBanSachModel.Store.insertChiTieu" />
+          <FunctionImportMapping FunctionImportName="SearchBook" FunctionName="QuanLyCuaHangBanSachModel.Store.SearchBook">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QuanLyCuaHangBanSachModel.SearchBook_Result">
+                <ScalarProperty Name="MaSach" ColumnName="MaSach" />
+                <ScalarProperty Name="TenSach" ColumnName="TenSach" />
+                <ScalarProperty Name="TacGia" ColumnName="TacGia" />
+                <ScalarProperty Name="NhaXuatBan" ColumnName="NhaXuatBan" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="GiaTienBan" ColumnName="GiaTienBan" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UpdateBook" FunctionName="QuanLyCuaHangBanSachModel.Store.UpdateBook" />
+          <FunctionImportMapping FunctionImportName="ViewBooks" FunctionName="QuanLyCuaHangBanSachModel.Store.ViewBooks">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QuanLyCuaHangBanSachModel.ViewBooks_Result">
+                <ScalarProperty Name="MaSach" ColumnName="MaSach" />
+                <ScalarProperty Name="TenSach" ColumnName="TenSach" />
+                <ScalarProperty Name="TacGia" ColumnName="TacGia" />
+                <ScalarProperty Name="NhaXuatBan" ColumnName="NhaXuatBan" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="GiaTienBan" ColumnName="GiaTienBan" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ViewChiTieu" FunctionName="QuanLyCuaHangBanSachModel.Store.ViewChiTieu">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QuanLyCuaHangBanSachModel.ViewChiTieu_Result">
+                <ScalarProperty Name="Thang" ColumnName="Thang" />
+                <ScalarProperty Name="Nam" ColumnName="Nam" />
+                <ScalarProperty Name="TienDien" ColumnName="TienDien" />
+                <ScalarProperty Name="TienNuoc" ColumnName="TienNuoc" />
+                <ScalarProperty Name="TienLuongNhanVien" ColumnName="TienLuongNhanVien" />
+                <ScalarProperty Name="TienInternet" ColumnName="TienInternet" />
+                <ScalarProperty Name="TienThueMatBang" ColumnName="TienThueMatBang" />
+                <ScalarProperty Name="ChiPhiKhac" ColumnName="ChiPhiKhac" />
+                <ScalarProperty Name="TongChiTieu" ColumnName="TongChiTieu" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

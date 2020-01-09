@@ -62,22 +62,10 @@ namespace PhanMemBanSach
         {
             try
             {
-                SqlConnection sqlConnect = new SqlConnection(DataProvider.Ins.DB.Database.Connection.ConnectionString);
-                sqlConnect.BeginTransaction();
-                SqlCommand sql = new SqlCommand("sp_UpdateBook", sqlConnect);
-                sql.CommandType = System.Data.CommandType.StoredProcedure;
-                sql.Parameters.AddWithValue("@maSach", MaSach);
-                sql.Parameters.AddWithValue("@tenSach", TenSach);
-                sql.Parameters.AddWithValue("@tacGia", TacGia);
-                sql.Parameters.AddWithValue("@NXB", NhaXuatBan);
-                sql.Parameters.AddWithValue("@soLuong", SoLuong);
-                sql.Parameters.AddWithValue("@giaTien", GiaTienBan);
-                sqlConnect.Open();
-                int result = sql.ExecuteNonQuery();
+                int result = DataProvider.Ins.DB.UpdateBook(MaSach, TenSach, TacGia, NhaXuatBan, SoLuong, GiaTienBan);
                 DataProvider.Ins.DB.SaveChanges();
-                sqlConnect.Close();
                 if (result == 1)
-                    MessageBox.Show("Sửa sách thành công! ");
+                    MessageBox.Show("Sửa sách thành công!");
             }
             catch (Exception ex)
             {
@@ -87,8 +75,18 @@ namespace PhanMemBanSach
 
         private void DelBookButton_Click(object sender, RoutedEventArgs e)
         {
-            var screen = new DeleteBooks();
-            screen.ShowDialog();
+            try
+            {
+                int result = DataProvider.Ins.DB.DeleteBook(MaSach);
+                DataProvider.Ins.DB.SaveChanges();
+                if (result == 1)
+                    MessageBox.Show("Xóa sách thành công!");
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("SQL error:" + ex.Message.ToString());
+            }
         }
     }
 }

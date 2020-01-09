@@ -22,3 +22,5 @@ INSERT INTO dbo.Sach( MaSach , TenSach , TacGia , NhaXuatBan , SoLuong ,GiaTienB
 VALUES  ( 'S0009', N'Cho tôi xin một vé đi tuổi thơ' , N'Nguyễn Nhật Ánh' ,N'Nhà xuất bản Trẻ' ,50 , 40000)
 INSERT INTO dbo.Sach( MaSach , TenSach , TacGia , NhaXuatBan , SoLuong ,GiaTienBan )
 VALUES  ( 'S0010', N'Ngồi khóc trên cây' , N'Nguyễn Nhật Ánh' ,N'Nhà xuất bản Trẻ' ,50 , 45000)
+
+

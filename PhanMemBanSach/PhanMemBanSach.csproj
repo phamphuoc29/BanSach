@@ -107,6 +107,9 @@
     <Compile Include="Sach.cs">
       <DependentUpon>CuaHangBanSachModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="SearchBook_Result.cs">
+      <DependentUpon>CuaHangBanSachModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ThongKeNam.cs">
       <DependentUpon>CuaHangBanSachModel.tt</DependentUpon>
     </Compile>
@@ -120,6 +123,12 @@
       <DependentUpon>CuaHangBanSachModel.tt</DependentUpon>
     </Compile>
     <Compile Include="User.cs">
+      <DependentUpon>CuaHangBanSachModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewBooks_Result.cs">
+      <DependentUpon>CuaHangBanSachModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewChiTieu_Result.cs">
       <DependentUpon>CuaHangBanSachModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\StoreManagementVM.cs" />

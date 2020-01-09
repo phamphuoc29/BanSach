@@ -24,9 +24,6 @@ namespace PhanMemBanSach
     {
         StoreManagementVM storeManaVM;
 
-        private string _searchString;
-        public string SearchString { get => _searchString; set { _searchString = value; } }
-
         public manageStore()
         {
             InitializeComponent();
@@ -36,9 +33,14 @@ namespace PhanMemBanSach
 
         private void Search_Click(object sender, RoutedEventArgs e)
         {
-            if(SearchString != null)
+            if(storeManaVM.SearchString != null)
             {
-
+                var books = DataProvider.Ins.DB.SearchBook(storeManaVM.SearchString);
+                storeManaVM.ListBook.Clear();
+                foreach(var book in books)
+                {
+                    storeManaVM.ListBook.Add(new Sach { MaSach = book.MaSach, TenSach = book.TenSach, TacGia = book.TacGia, NhaXuatBan = book.NhaXuatBan, SoLuong = book.SoLuong, GiaTienBan = book.GiaTienBan });
+                }
             }
         }
 
@@ -54,14 +56,21 @@ namespace PhanMemBanSach
             {
                 var screen = new EditBooks(storeManaVM.SelectedBook);
                 screen.ShowDialog();
+                storeManaVM.LoadBook();
             }
             else
                 MessageBox.Show("Vui lòng chọn sách!");
         }
         private void DelBookButton_Click(object sender, RoutedEventArgs e)
         {
-            var screen = new DeleteBooks();
-            screen.ShowDialog();
+            if (storeManaVM.SelectedBook != null)
+            {
+                var screen = new DeleteBooks(storeManaVM.SelectedBook.MaSach);
+                screen.ShowDialog();
+                storeManaVM.LoadBook();
+            }
+            else
+                MessageBox.Show("Vui lòng chọn sách!");
         }
 
         private void LvInfoBooks_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -70,6 +79,7 @@ namespace PhanMemBanSach
             {
                 var screen = new DetailBooks(storeManaVM.SelectedBook);
                 screen.ShowDialog();
+                storeManaVM.LoadBook();
             }
             else
                 MessageBox.Show("Vui lòng chọn sách!");
@@ -98,6 +108,9 @@ namespace PhanMemBanSach
             screen.ShowDialog();
         }
 
+        private void searchBookTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
 
+        }
     }
 }

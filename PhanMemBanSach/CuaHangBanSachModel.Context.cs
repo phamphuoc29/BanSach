@@ -12,6 +12,8 @@ namespace PhanMemBanSach
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class QuanLyCuaHangBanSachEntities : DbContext
     {
@@ -37,5 +39,107 @@ namespace PhanMemBanSach
         public virtual DbSet<ThongKeQuy> ThongKeQuys { get; set; }
         public virtual DbSet<ThongKeThang> ThongKeThangs { get; set; }
         public virtual DbSet<User> Users { get; set; }
+    
+        public virtual int DeleteBook(string maSach)
+        {
+            var maSachParameter = maSach != null ?
+                new ObjectParameter("maSach", maSach) :
+                new ObjectParameter("maSach", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteBook", maSachParameter);
+        }
+    
+        public virtual int insertChiTieu(Nullable<int> thang, Nullable<int> nam, Nullable<decimal> tienDien, Nullable<decimal> tienNuoc, Nullable<decimal> tienLuong, Nullable<decimal> tienInternet, Nullable<decimal> tienThueNha, Nullable<decimal> khac)
+        {
+            var thangParameter = thang.HasValue ?
+                new ObjectParameter("thang", thang) :
+                new ObjectParameter("thang", typeof(int));
+    
+            var namParameter = nam.HasValue ?
+                new ObjectParameter("nam", nam) :
+                new ObjectParameter("nam", typeof(int));
+    
+            var tienDienParameter = tienDien.HasValue ?
+                new ObjectParameter("tienDien", tienDien) :
+                new ObjectParameter("tienDien", typeof(decimal));
+    
+            var tienNuocParameter = tienNuoc.HasValue ?
+                new ObjectParameter("tienNuoc", tienNuoc) :
+                new ObjectParameter("tienNuoc", typeof(decimal));
+    
+            var tienLuongParameter = tienLuong.HasValue ?
+                new ObjectParameter("tienLuong", tienLuong) :
+                new ObjectParameter("tienLuong", typeof(decimal));
+    
+            var tienInternetParameter = tienInternet.HasValue ?
+                new ObjectParameter("tienInternet", tienInternet) :
+                new ObjectParameter("tienInternet", typeof(decimal));
+    
+            var tienThueNhaParameter = tienThueNha.HasValue ?
+                new ObjectParameter("tienThueNha", tienThueNha) :
+                new ObjectParameter("tienThueNha", typeof(decimal));
+    
+            var khacParameter = khac.HasValue ?
+                new ObjectParameter("khac", khac) :
+                new ObjectParameter("khac", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("insertChiTieu", thangParameter, namParameter, tienDienParameter, tienNuocParameter, tienLuongParameter, tienInternetParameter, tienThueNhaParameter, khacParameter);
+        }
+    
+        public virtual ObjectResult<SearchBook_Result> SearchBook(string @string)
+        {
+            var stringParameter = @string != null ?
+                new ObjectParameter("string", @string) :
+                new ObjectParameter("string", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SearchBook_Result>("SearchBook", stringParameter);
+        }
+    
+        public virtual int UpdateBook(string maSach, string tenSach, string tacGia, string nXB, Nullable<int> sl, Nullable<decimal> giaTien)
+        {
+            var maSachParameter = maSach != null ?
+                new ObjectParameter("maSach", maSach) :
+                new ObjectParameter("maSach", typeof(string));
+    
+            var tenSachParameter = tenSach != null ?
+                new ObjectParameter("tenSach", tenSach) :
+                new ObjectParameter("tenSach", typeof(string));
+    
+            var tacGiaParameter = tacGia != null ?
+                new ObjectParameter("tacGia", tacGia) :
+                new ObjectParameter("tacGia", typeof(string));
+    
+            var nXBParameter = nXB != null ?
+                new ObjectParameter("NXB", nXB) :
+                new ObjectParameter("NXB", typeof(string));
+    
+            var slParameter = sl.HasValue ?
+                new ObjectParameter("sl", sl) :
+                new ObjectParameter("sl", typeof(int));
+    
+            var giaTienParameter = giaTien.HasValue ?
+                new ObjectParameter("giaTien", giaTien) :
+                new ObjectParameter("giaTien", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateBook", maSachParameter, tenSachParameter, tacGiaParameter, nXBParameter, slParameter, giaTienParameter);
+        }
+    
+        public virtual ObjectResult<ViewBooks_Result> ViewBooks()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ViewBooks_Result>("ViewBooks");
+        }
+    
+        public virtual ObjectResult<ViewChiTieu_Result> ViewChiTieu(Nullable<int> thang, Nullable<int> nam)
+        {
+            var thangParameter = thang.HasValue ?
+                new ObjectParameter("thang", thang) :
+                new ObjectParameter("thang", typeof(int));
+    
+            var namParameter = nam.HasValue ?
+                new ObjectParameter("nam", nam) :
+                new ObjectParameter("nam", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ViewChiTieu_Result>("ViewChiTieu", thangParameter, namParameter);
+        }
     }
 }

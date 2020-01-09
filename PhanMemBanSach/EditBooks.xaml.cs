@@ -62,21 +62,11 @@ namespace PhanMemBanSach
         {
             try
             {
-                SqlConnection sqlConnect = new SqlConnection(DataProvider.Ins.DB.Database.Connection.ConnectionString);
-                SqlCommand sql = new SqlCommand("sp_UpdateBook", sqlConnect);
-                sql.CommandType = System.Data.CommandType.StoredProcedure;
-                sql.Parameters.AddWithValue("@maSach", MaSach);
-                sql.Parameters.AddWithValue("@tenSach",TenSach);
-                sql.Parameters.AddWithValue("@tacGia",TacGia);
-                sql.Parameters.AddWithValue("@NXB", NhaXuatBan);
-                sql.Parameters.AddWithValue("@soLuong", SoLuong);
-                sql.Parameters.AddWithValue("@giaTien",  GiaTienBan);
-                sqlConnect.Open();
-                int result = sql.ExecuteNonQuery();
+                int result = DataProvider.Ins.DB.UpdateBook(MaSach, TenSach, TacGia, NhaXuatBan, SoLuong, GiaTienBan);
                 DataProvider.Ins.DB.SaveChanges();
-                sqlConnect.Close();
                 if (result == 1)
-                    MessageBox.Show("Sửa sách thành công! ");
+                    MessageBox.Show("Sửa sách thành công!");
+                
             }catch(Exception ex)
             {
                 MessageBox.Show("SQL error:" + ex.Message.ToString());
