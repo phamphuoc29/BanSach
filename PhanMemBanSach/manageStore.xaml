@@ -200,36 +200,36 @@
                         <StackPanel Margin="20,20,20,20" Width="1218">
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Tháng "/>
-                                <TextBox Name="Month" Width="80" Height="40"/>
+                                <TextBox Name="Month" Text="{Binding Thang,Mode=TwoWay}" Width="80" Height="40"/>
                                 <Label Content="Năm " Margin="20,0,0,0"/>
-                                <TextBox Name="Year" Width="100" Height="40"/>
+                                <TextBox Name="Year" Text="{Binding Nam,Mode=TwoWay}" Width="100" Height="40"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
                                 <Label Content="Tiền thuê nhà" Width="200"/>
-                                <TextBox Name="MoneyRentHouse" Margin="200,0,0,0" Width="624" Height="40"/>
+                                <TextBox Name="MoneyRentHouse" Text="{Binding TienThueNha,Mode=TwoWay}" Margin="200,0,0,0" Width="624" Height="40"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
                                 <Label Content="Tiền nước" Width="200"/>
-                                <TextBox x:Name="MoneyWater" Margin="200,0,0,0" Width="624" Height="40"/>
+                                <TextBox x:Name="MoneyWater" Text="{Binding TienNuoc,Mode=TwoWay}" Margin="200,0,0,0" Width="624" Height="40"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
                                 <Label Content="Tiền điện" Width="200"/>
-                                <TextBox Name="MoneyEle" Margin="200,0,0,0" Width="624" Height="40"/>
+                                <TextBox Name="MoneyEle" Text="{Binding TienDien,Mode=TwoWay}" Margin="200,0,0,0" Width="624" Height="40"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
                                 <Label Content="Tiền lương nhân viên" Width="200"/>
-                                <TextBox Name="MoneySalary" Margin="200,0,0,0" Width="624" Height="40"/>
+                                <TextBox Name="MoneySalary" Text="{Binding TienLuongNV,Mode=TwoWay}" Margin="200,0,0,0" Width="624" Height="40"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
                                 <Label Content="Tiền Internet" Width="200"/>
-                                <TextBox Name="MoneyInternet" Margin="200,0,0,0" Width="624" Height="40"/>
+                                <TextBox Name="MoneyInternet" Text="{Binding TienInternet,Mode=TwoWay}" Margin="200,0,0,0" Width="624" Height="40"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
                                 <Label Content="Khác" Width="200"/>
-                                <TextBox Name="Different" Margin="200,0,0,0" Width="624" Height="40"/>
+                                <TextBox Name="Different" Text="{Binding Khac,Mode=TwoWay}" Margin="200,0,0,0" Width="624" Height="40"/>
                             </StackPanel>
                             <StackPanel>
-                                <Button Content="Lưu" Width="100" Height="40" Background="LightBlue" HorizontalAlignment="Right" Margin="0,10,450,0" />
+                                <Button Content="Lưu" Click="Save_Click" Width="100" Height="40" Background="LightBlue" HorizontalAlignment="Right" Margin="0,10,450,0" />
                             </StackPanel>
                         </StackPanel>
                     </StackPanel>

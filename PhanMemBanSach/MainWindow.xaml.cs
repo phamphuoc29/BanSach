@@ -67,6 +67,7 @@ namespace PhanMemBanSach
             //}
             MainCanvas.Visibility = Visibility.Hidden;
             OptionCavas.Visibility = Visibility.Visible;
+
         }
 
         private void Staff_Click(object sender, RoutedEventArgs e)

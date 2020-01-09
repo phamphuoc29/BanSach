@@ -112,5 +112,21 @@ namespace PhanMemBanSach
         {
 
         }
+
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                int result = DataProvider.Ins.DB.insertChiTieu(storeManaVM.Thang, storeManaVM.Nam, storeManaVM.TienDien, storeManaVM.TienNuoc, storeManaVM.TienLuongNV, storeManaVM.TienInternet,storeManaVM.TienThueNha, storeManaVM.Khac);
+                DataProvider.Ins.DB.SaveChanges();
+                if (result == 1)
+                    MessageBox.Show("Thêm chi tiết chi tiêu thành công!");
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("SQL error:" + ex.Message.ToString());
+            }
+        }
     }
 }
